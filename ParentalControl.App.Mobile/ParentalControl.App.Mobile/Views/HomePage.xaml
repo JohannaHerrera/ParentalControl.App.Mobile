@@ -31,19 +31,19 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
                         <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked">></ImageButton>
                         <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
                         <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Schedules_Clicked">></ImageButton>
                         <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Notifications_Clicked">></ImageButton>
                         <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked">></ImageButton>
                         <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent"></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Logout_Clicked">></ImageButton>
                     </Grid>
                 </StackLayout>
             </Grid>
