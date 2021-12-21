@@ -10,7 +10,7 @@ namespace ParentalControl.App.Mobile
         {
             get
             {
-                return "http://192.168.100.17:45457/";
+                return "http://192.168.100.17:45455/";
             }
         }
     }

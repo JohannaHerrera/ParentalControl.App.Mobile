@@ -5,17 +5,59 @@
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
-        <StackLayout Padding="20,10,20,10" VerticalOptions="StartAndExpand">
-            <Entry x:Name="txtDeviceName" Placeholder="{Binding DeviceName}" TextColor="Black" 
-                   PlaceholderColor="Gray" FontAttributes="Bold" FontSize="30"></Entry>
+        <ScrollView>
+            <StackLayout  VerticalOptions="StartAndExpand">
+                <StackLayout BackgroundColor="#7E8CA9" Padding="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Entry Grid.Column="0" x:Name="txtDeviceName" TextColor="White" Margin="20,0,20,0"
+                            PlaceholderColor="#0d6efd" FontAttributes="Bold" FontSize="25"></Entry>
+                        <ImageButton Grid.Column="1" Source="borrar.png" WidthRequest="20" HeightRequest="20"
+                            BackgroundColor="Transparent" Margin="0,0,30,0" Clicked="DeleteDevice_Clicked"></ImageButton>
+                    </Grid>
+                    
+                </StackLayout>
+                <StackLayout Padding="20,10,20,10">
+                    <Grid HorizontalOptions="Center" Margin="10,0,20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-            <Label HorizontalOptions="Center" Text="Asignado a:" TextColor="Black"
-                   FontAttributes="Bold" FontSize="15"></Label>
+                        <Label Grid.Column="0" HorizontalOptions="Center" Text="Asignado a:" TextColor="Black"
+                                FontAttributes="Bold" FontSize="20" VerticalOptions="Center"></Label>
+                        <Picker Grid.Column="1" x:Name="cmbInfants" FontSize="18" TextColor="Black" SelectedIndexChanged="Infant_SelectedIndexChanged"/>
+                    </Grid>
 
-            <Label HorizontalOptions="Center" Text="Seleccione el horario de uso:" TextColor="Black"
-                   FontAttributes="Bold" FontSize="15"></Label>
-        </StackLayout>
-        <StackLayout Padding="10,10,10,10" BackgroundColor="#5D6D7E" VerticalOptions="End">
+                    <Label HorizontalOptions="Center" Text="Seleccione el horario de uso:" TextColor="Black"
+                            FontAttributes="Bold" FontSize="19" Padding="0,30,0,0"></Label>
+
+                    <StackLayout>
+                        <Grid x:Name="tblDeviceUse" Margin="40,10,40,10" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackLayout>
+
+                    <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#13B57E"
+                            CornerRadius="30" Margin="100,15,100,15" FontSize="16" FontAttributes="Bold"
+                            Clicked="SaveDeviceChanges_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="End">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
@@ -32,17 +74,17 @@
                 <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
                         BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
                 <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
-                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked">></ImageButton>
+                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked"></ImageButton>
                 <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
                         BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
                 <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent" Clicked="Schedules_Clicked">></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Schedules_Clicked"></ImageButton>
                 <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent" Clicked="Notifications_Clicked">></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Notifications_Clicked"></ImageButton>
                 <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked">></ImageButton>
+                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked"></ImageButton>
                 <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
-                        BackgroundColor="Transparent" Clicked="Logout_Clicked">></ImageButton>
+                        BackgroundColor="Transparent" Clicked="Logout_Clicked"></ImageButton>
             </Grid>
         </StackLayout>
     </StackLayout>

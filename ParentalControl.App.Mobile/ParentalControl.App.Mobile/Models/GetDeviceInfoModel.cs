@@ -4,7 +4,9 @@ using System.Text;
 
 namespace ParentalControl.App.Mobile.Models
 {
-    public class DeviceResponseModel
+    public class GetDeviceInfoModel
     {
+        public int ParentId { get; set; }
+        public string DevicePhoneCode { get; set; }
     }
 }
