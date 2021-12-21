@@ -71,6 +71,10 @@ namespace ParentalControl.App.Mobile.Views
                             }
                             else
                             {
+                                Preferences.Set("ParentId", response.ParentId.ToString());
+                                Preferences.Set("ParentUsername", response.ParentUserName);
+                                Preferences.Set("ParentEmail", response.ParentEmail);
+
                                 _ = Navigation.PushAsync(new HomePage());
                             }
                         }
