@@ -1,12 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentalControl.App.Mobile.Views.RegisterPage">
+             x:Class="ParentalControl.App.Mobile.Views.RegisterPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="40,5,40,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Label HorizontalOptions="Center" Text="Control Parental" TextColor="#13B57E"
+                   FontAttributes="Bold" FontSize="35"></Label>
+            <Label HorizontalOptions="Center" Text="Bienvenido" TextColor="#0d6efd"
+                   FontAttributes="Bold" FontSize="25" Padding="0,0,0,20"></Label>
+            <Image Source="controlParentalLogo.png" WidthRequest="160" HeightRequest="160"></Image>
+            <Entry x:Name="txtUsername" Placeholder="Nombre" TextColor="Black" PlaceholderColor="Gray"></Entry>
+            <Entry x:Name="txtEmail" Placeholder="Correo" TextColor="Black" PlaceholderColor="Gray"></Entry>
+            <Entry x:Name="txtPassword" Placeholder="Contraseña" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"></Entry>
+            <Button VerticalOptions="Center" Text="Registrarse" TextColor="White" BackgroundColor="#13B57E"
+                    CornerRadius="30" Margin="50,20,50,15" Clicked="Register_Clicked"></Button>
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="¿Ya tienes una cuenta? " TextColor="Black"></Span>
+                        <Span Text="Iniciar Sesión" TextColor="#0d6efd" FontAttributes="Bold" TextDecorations="Underline"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRegister_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
