@@ -4,49 +4,40 @@
              x:Class="ParentalControl.App.Mobile.Views.HomePage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid>
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="603"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-
-                <StackLayout Padding="10,10,10,10" Grid.Row="1" BackgroundColor="#5D6D7E">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
+        <StackLayout>
+            <StackLayout BackgroundColor="Red" VerticalOptions="StartAndExpand">
+                <Label BackgroundColor="Red" Text="Hola" TextColor="Black"></Label>
+            </StackLayout>
+            <StackLayout Padding="10,10,10,10" BackgroundColor="#5D6D7E" VerticalOptions="End">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
                         BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
-                        <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
+                    <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
                         BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked">></ImageButton>
-                        <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
+                    <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
                         BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
-                        <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
+                    <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
                         BackgroundColor="Transparent" Clicked="Schedules_Clicked">></ImageButton>
-                        <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
+                    <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
                         BackgroundColor="Transparent" Clicked="Notifications_Clicked">></ImageButton>
-                        <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
+                    <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
                         BackgroundColor="Transparent" Clicked="MyAccount_Clicked">></ImageButton>
-                        <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
+                    <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
                         BackgroundColor="Transparent" Clicked="Logout_Clicked">></ImageButton>
-                    </Grid>
-                </StackLayout>
-            </Grid>
-        </ScrollView>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
