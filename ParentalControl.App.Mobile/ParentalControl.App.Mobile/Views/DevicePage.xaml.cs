@@ -15,6 +15,9 @@ namespace ParentalControl.App.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DevicePage : ContentPage
     {
+        private List<ScheduleModel> schedules = new List<ScheduleModel>();
+        private List<InfantAccountModel> infants = new List<InfantAccountModel>();
+
         public DevicePage()
         {
             InitializeComponent();
@@ -26,6 +29,7 @@ namespace ParentalControl.App.Mobile.Views
             GetDeviceInfoModel getDeviceInfoModel = new GetDeviceInfoModel();
             getDeviceInfoModel.DevicePhoneCode = CrossDeviceInfo.Current.Id;
             getDeviceInfoModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
+            getDeviceInfoModel.Action = 1; // Action = 1 (GetDeviceInfo)
             var response = await new DeviceService().GetDeviceInfo(getDeviceInfoModel);
 
             if(response != null)
@@ -36,6 +40,10 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
+                    // Guardo la información de los horarios e infantes
+                    schedules = response.scheduleList;
+                    infants = response.infantAccountList;
+
                     // Nombre del Dispositivo
                     txtDeviceName.Text = response.DevicePhoneName;
 
@@ -108,12 +116,77 @@ namespace ParentalControl.App.Mobile.Views
 
         private async void DeleteDevice_Clicked(object sender, EventArgs a)
         {
+            GetDeviceInfoModel getDeviceInfoModel = new GetDeviceInfoModel();
+            getDeviceInfoModel.DevicePhoneCode = CrossDeviceInfo.Current.Id;
+            getDeviceInfoModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
+            getDeviceInfoModel.Action = 2; // Action = 2 (DeleteDevice)
 
+            var response = await new DeviceService().GetDeviceInfo(getDeviceInfoModel);
+
+            if (response != null)
+            {
+                if (!string.IsNullOrEmpty(response.MessageError))
+                {
+                    _ = DisplayAlert("Error", response.MessageError, "OK");
+                }
+                else
+                {
+                    if (response.IsSuccess)
+                    {
+                        _ = DisplayAlert("Aviso", "Para vincular otra vez el dispositivo, vuelva a iniciar sesión.", "OK");
+                        _ = DisplayAlert("Aviso", "El dispositivo se eliminó correctamente.", "OK");                        
+                        Xamarin.Essentials.Preferences.Clear();
+                        _ = Navigation.PushAsync(new LoginPage());
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Error", "No se pudo eliminar el dispositivo. Inténtelo de nuevo.", "OK");
+                    }
+                }
+            }
+            else
+            {
+                _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
+                _ = Navigation.PushAsync(new HomePage());
+            }
         }
 
-        private async void SaveDeviceChanges_Clicked(object sender, EventArgs a)
+        private void SaveDeviceChanges_Clicked(object sender, EventArgs a)
         {
+            if (string.IsNullOrEmpty(txtDeviceName.Text))
+            {
+                _ = DisplayAlert("Error", "El nombre del dispositivo no es válido.", "OK");
+            }
+            else
+            {
+                List<DevicePhoneUseModel> devicePhoneUseModelList = new List<DevicePhoneUseModel>();
+                string deviceName = txtDeviceName.Text;
 
+                int cont = 0;
+                foreach (var item in tblDeviceUse.Children)
+                {
+                    DevicePhoneUseModel devicePhoneUseModel = new DevicePhoneUseModel();
+
+                    try
+                    {
+                        var label = item as Label;
+                        devicePhoneUseModel.DevicePhoneUseDay = label.Text;
+                        devicePhoneUseModelList.Add(devicePhoneUseModel);
+                        cont++;
+                    }
+                    catch (Exception ex)
+                    {
+                        var picker = item as Picker;
+                        var selectedItem = picker.SelectedItem;
+                        int scheduleId = schedules.Where(x => x.ScheduleTime == selectedItem.ToString()).FirstOrDefault().ScheduleId;
+                        devicePhoneUseModelList[cont - 1].ScheduleId = scheduleId;                       
+                    }
+                }
+
+                var infant = cmbInfants.SelectedItem;
+                int infantId = infants.Where(x => x.InfantName == infant.ToString()).FirstOrDefault().InfantAccountId;
+            }
+            
         }
 
         private void Home_Clicked(object sender, EventArgs a)

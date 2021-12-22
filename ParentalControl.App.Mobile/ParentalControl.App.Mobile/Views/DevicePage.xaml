@@ -45,7 +45,7 @@
                         <Grid x:Name="tblDeviceUse" Margin="40,10,40,10" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </StackLayout>

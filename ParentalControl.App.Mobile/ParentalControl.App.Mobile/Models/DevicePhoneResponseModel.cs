@@ -23,5 +23,7 @@ namespace ParentalControl.App.Mobile.Models
         public List<ScheduleModel> scheduleList { get; set; }
         [JsonProperty("MessageError")]
         public string MessageError { get; set; }
+        [JsonProperty("IsSuccess")]
+        public bool IsSuccess { get; set; }
     }
 }
