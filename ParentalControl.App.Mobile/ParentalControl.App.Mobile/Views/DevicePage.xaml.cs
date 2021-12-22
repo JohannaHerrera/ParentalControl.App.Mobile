@@ -86,7 +86,7 @@ namespace ParentalControl.App.Mobile.Views
                         }
 
                         tblDeviceUse.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                        tblDeviceUse.Children.Add(new Label { Text = $"{use.DevicePhoneUseDay}:", FontSize = 18,
+                        tblDeviceUse.Children.Add(new Label { Text = use.DevicePhoneUseDay, FontSize = 18,
                                                   VerticalOptions = LayoutOptions.Center, Padding = new Thickness(0,0,0,8)},
                                                   0, rowCount);
 
@@ -151,7 +151,7 @@ namespace ParentalControl.App.Mobile.Views
             }
         }
 
-        private void SaveDeviceChanges_Clicked(object sender, EventArgs a)
+        private async void SaveDeviceChanges_Clicked(object sender, EventArgs a)
         {
             if (string.IsNullOrEmpty(txtDeviceName.Text))
             {
@@ -159,8 +159,8 @@ namespace ParentalControl.App.Mobile.Views
             }
             else
             {
+                UpdateDevicePhoneInfoModel updateDevicePhoneInfo = new UpdateDevicePhoneInfoModel();
                 List<DevicePhoneUseModel> devicePhoneUseModelList = new List<DevicePhoneUseModel>();
-                string deviceName = txtDeviceName.Text;
 
                 int cont = 0;
                 foreach (var item in tblDeviceUse.Children)
@@ -185,6 +185,26 @@ namespace ParentalControl.App.Mobile.Views
 
                 var infant = cmbInfants.SelectedItem;
                 int infantId = infants.Where(x => x.InfantName == infant.ToString()).FirstOrDefault().InfantAccountId;
+
+                // Armo el modelo para actualizar la información del dispositivo
+                updateDevicePhoneInfo.DevicePhoneCode = CrossDeviceInfo.Current.Id;
+                updateDevicePhoneInfo.DevicePhoneName = txtDeviceName.Text;
+                updateDevicePhoneInfo.devicePhoneUseModelList = devicePhoneUseModelList;
+                updateDevicePhoneInfo.InfantAccountId = infantId;
+                updateDevicePhoneInfo.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
+
+                var response = await new DeviceService().UpdateDeviceInfo(updateDevicePhoneInfo);
+
+                if (response)
+                {
+                    _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
+                    _ = Navigation.PushAsync(new DevicePage());
+                }
+                else
+                {
+                    _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
+                    _ = Navigation.PushAsync(new HomePage());
+                }
             }
             
         }
