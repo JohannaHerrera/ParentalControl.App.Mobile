@@ -57,7 +57,7 @@
             </StackLayout>
         </ScrollView>
 
-        <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="End">
+        <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="EndAndExpand">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
