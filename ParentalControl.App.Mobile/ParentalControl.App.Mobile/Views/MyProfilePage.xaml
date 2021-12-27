@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentalControl.App.Mobile.Views.MyProfilePage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <StackLayout>
+        <ScrollView>
+            <StackLayout  VerticalOptions="StartAndExpand">
+                <StackLayout BackgroundColor="#7E8CA9" Padding="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="user.png" WidthRequest="20" HeightRequest="20" Margin="10,0,0,0"></Image>
+                        <Label Grid.Column="1" Text="Mi Perfil" TextColor="White" Margin="10,0,20,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Padding="50,50,50,10" VerticalOptions="CenterAndExpand">
+                    <Label Text="Nombre:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
+                    <Entry x:Name="txtUsername" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                    <Label Text="Correo:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
+                    <Entry x:Name="txtEmail" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                    <Label Text="Contraseña:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
+                    <Entry x:Name="txtPassword" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                    <Button x:Name="bntEdit" VerticalOptions="Center" Text="Editar" TextColor="White" BackgroundColor="#7E8CA9"
+                    CornerRadius="30" Margin="70,60,70,25" Clicked="Edit_Clicked" FontSize="18" FontAttributes="Bold"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="EndAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
+                <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked"></ImageButton>
+                <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
+                        BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
+                <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Schedules_Clicked"></ImageButton>
+                <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Notifications_Clicked"></ImageButton>
+                <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked"></ImageButton>
+                <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Logout_Clicked"></ImageButton>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

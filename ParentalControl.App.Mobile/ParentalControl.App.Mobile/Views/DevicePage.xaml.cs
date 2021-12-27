@@ -236,12 +236,13 @@ namespace ParentalControl.App.Mobile.Views
 
         private void MyAccount_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new MyProfilePage());
         }
 
         private void Logout_Clicked(object sender, EventArgs a)
         {
-
+            Xamarin.Essentials.Preferences.Clear();
+            _ = Navigation.PushAsync(new LoginPage());
         }
     }
 }
