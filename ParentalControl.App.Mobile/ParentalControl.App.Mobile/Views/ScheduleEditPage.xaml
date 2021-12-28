@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentalControl.App.Mobile.Views.ScheduleEditPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="WhiteSmoke" Margin="20,20,20,20">
+            <Label HorizontalOptions="Center" Text="Control Parental" TextColor="#13B57E"
+                   FontAttributes="Bold" FontSize="35"></Label>
+            <Label HorizontalOptions="Center" Text="Ingresar Nuevo Horario" TextColor="#0d6efd"
+                   FontAttributes="Bold" FontSize="25" Padding="0,0,0,20"></Label>
+            <Label HorizontalOptions="Center" Text="Inicio" TextColor="#13B57E"
+                   FontAttributes="Bold" FontSize="15" Padding="0,0,0,20"></Label>
+            <Grid x:Name="startTime">
+                <TimePicker x:Name="startPick">
+
+                </TimePicker>
+            </Grid>
+            <Label HorizontalOptions="Center" Text="Final" TextColor="#13B57E"
+                   FontAttributes="Bold" FontSize="15" Padding="0,0,0,20"></Label>
+            <Grid x:Name="endTime">
+                <TimePicker x:Name="endPick"
+                            >
+
+                </TimePicker>
+            </Grid>
+            <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#13B57E"
+                    CornerRadius="30" Margin="50,20,50,15" Clicked="Edit_Clicked"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
