@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentalControl.App.Mobile.Views.HomePage"
+             x:Class="ParentalControl.App.Mobile.Views.MyProfilePage"
              NavigationPage.HasNavigationBar="False">
     
     <StackLayout>
@@ -13,18 +13,23 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Noticias" TextColor="White" Margin="20,0,20,0"
+                        <Image Grid.Column="0" Source="user.png" WidthRequest="20" HeightRequest="20" Margin="10,0,0,0"></Image>
+                        <Label Grid.Column="1" Text="Mi Perfil" TextColor="White" Margin="10,0,20,0"
                                 FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="20,10,20,10">
-                    <Grid x:Name="tblNews" HorizontalOptions="Center" Margin="10,10,10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
+                <StackLayout Padding="50,50,50,10" VerticalOptions="CenterAndExpand">
+                    <Label Text="Nombre:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
+                    <Entry x:Name="txtUsername" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                    <Label Text="Correo:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
+                    <Entry x:Name="txtEmail" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                    <Label Text="Contraseña:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
+                    <Entry x:Name="txtPassword" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                    <Button x:Name="bntEdit" VerticalOptions="Center" Text="Editar" TextColor="White" BackgroundColor="#0d6efd"
+                    CornerRadius="30" Margin="70,60,70,25" Clicked="Edit_Clicked" FontSize="18" FontAttributes="Bold"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
