@@ -1,57 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentalControl.App.Mobile.Views.DevicePage"
+             x:Class="ParentalControl.App.Mobile.Views.CreateInfantAccountPage"
              NavigationPage.HasNavigationBar="False">
-
     <StackLayout>
         <ScrollView>
             <StackLayout  VerticalOptions="StartAndExpand">
-                <StackLayout BackgroundColor="#2D60B3" Padding="8">
+                <StackLayout BackgroundColor="#7E8CA9" HorizontalOptions="Fill">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="65" />
-                        </Grid.ColumnDefinitions>
-                        <Entry Grid.Column="0" x:Name="txtDeviceName" TextColor="White" Margin="20,0,20,0"
-                            PlaceholderColor="#0d6efd" FontAttributes="Bold" FontSize="25"></Entry>
-                        <ImageButton Grid.Column="1" Source="borrar.png" WidthRequest="50" HeightRequest="50"
-                            BackgroundColor="Transparent" Margin="0,0,30,0" Clicked="DeleteDevice_Clicked"></ImageButton>
-                    </Grid>                    
+                        </Grid.RowDefinitions>                        
+                        <Label Grid.Column="0" Text="Crear cuenta de Infante" TextColor="White" Margin="0"
+                                FontAttributes="Bold" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center">
+                        </Label>
+                    </Grid>
                 </StackLayout>
                 <StackLayout Padding="20,10,20,10">
                     <Grid HorizontalOptions="Center" Margin="10,0,20,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
+                            <RowDefinition Height="100" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="130" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" HorizontalOptions="Center" Text="Asignado a:" TextColor="Black"
-                                FontAttributes="Bold" FontSize="20" VerticalOptions="Center"></Label>
-                        <Picker Grid.Column="1" x:Name="cmbInfants" FontSize="18" TextColor="Black" SelectedIndexChanged="Infant_SelectedIndexChanged"/>
+                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" 
+                               Source="../ParentalControl.App.Mobile.Android/Resources/drawable/children.png">
+                            
+                        </Image>
                     </Grid>
-
-                    <Label HorizontalOptions="Center" Text="Seleccione el horario de uso:" TextColor="Black"
+                    
+                    <Label HorizontalOptions="Center" Text="Ingrese los datos del Infante:" TextColor="Black"
                             FontAttributes="Bold" FontSize="19" Padding="0,30,0,0"></Label>
 
                     <StackLayout>
-                        <Grid x:Name="tblDeviceUse" Margin="40,10,40,10" HorizontalOptions="Center">
+                        <Grid Margin="40,10,40,10" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
                                 <ColumnDefinition Width="125"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Nombre:" TextColor="Black"
+                                FontAttributes="Bold" FontSize="20" VerticalOptions="Center"></Label>
+                            <Entry Grid.Column="1" x:Name="infantName" FontSize="18" TextColor="Black"/>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout>
+                        <Grid Margin="40,10,40,10" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Género:" TextColor="Black"
+                                FontAttributes="Bold" FontSize="20" VerticalOptions="Center"></Label>
+                            <Picker Grid.Column="1" x:Name="infantGender" FontSize="18" TextColor="Black" SelectedIndexChanged="InfantGender_SelectedIndexChanged"/>
                         </Grid>
                     </StackLayout>
 
                     <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#0d6efd"
                             CornerRadius="30" Margin="100,15,100,15" FontSize="16" FontAttributes="Bold"
-                            Clicked="SaveDeviceChanges_Clicked"></Button>
+                            Clicked="CreateInfantAccount_Clicked"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
@@ -87,5 +91,4 @@
             </Grid>
         </StackLayout>
     </StackLayout>
-
 </ContentPage>

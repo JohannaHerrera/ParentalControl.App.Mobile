@@ -216,7 +216,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void InfantAccounts_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new InfantAccountPage());
         }
 
         private void Device_Clicked(object sender, EventArgs a)
