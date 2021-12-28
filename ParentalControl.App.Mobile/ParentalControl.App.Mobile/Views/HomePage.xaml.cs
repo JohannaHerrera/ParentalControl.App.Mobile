@@ -44,7 +44,7 @@ namespace ParentalControl.App.Mobile.Views
                             //};
 
                             var formattedString = new FormattedString();
-                            formattedString.Spans.Add(new Span { Text = $"{news.NewsTitle}: ", FontAttributes = FontAttributes.Bold, TextColor = Color.FromHex("#0d6efd") });
+                            formattedString.Spans.Add(new Span { Text = $"{news.NewsTitle}: ", FontAttributes = FontAttributes.Bold, TextColor = Color.FromHex("#2D60B3") });
                             formattedString.Spans.Add(new Span { Text = $"{news.NewsDescription}", FontAttributes = FontAttributes.Bold });
                             var span = new Span { Text = " Leer más", TextColor = Color.FromHex("#0d6efd") };
                             span.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command((url) => OpenLink(news.NewsLink)) });

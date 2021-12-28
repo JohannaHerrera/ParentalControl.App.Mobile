@@ -7,7 +7,7 @@
     <StackLayout>
         <ScrollView>
             <StackLayout  VerticalOptions="StartAndExpand">
-                <StackLayout BackgroundColor="#7E8CA9" Padding="8">
+                <StackLayout BackgroundColor="#2D60B3" Padding="8">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
@@ -28,7 +28,7 @@
                     <Entry x:Name="txtEmail" TextColor="Black" PlaceholderColor="Gray"></Entry>
                     <Label Text="Contraseña:" FontSize="19" TextColor="Black" FontAttributes="Bold"></Label>
                     <Entry x:Name="txtPassword" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"></Entry>
-                    <Button x:Name="bntEdit" VerticalOptions="Center" Text="Editar" TextColor="White" BackgroundColor="#7E8CA9"
+                    <Button x:Name="bntEdit" VerticalOptions="Center" Text="Editar" TextColor="White" BackgroundColor="#0d6efd"
                     CornerRadius="30" Margin="70,60,70,25" Clicked="Edit_Clicked" FontSize="18" FontAttributes="Bold"></Button>
                 </StackLayout>
             </StackLayout>

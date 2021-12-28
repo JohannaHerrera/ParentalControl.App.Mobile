@@ -7,18 +7,18 @@
     <StackLayout>
         <ScrollView>
             <StackLayout  VerticalOptions="StartAndExpand">
-                <StackLayout BackgroundColor="#7E8CA9" Padding="8">
+                <StackLayout BackgroundColor="#2D60B3" Padding="8">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="320" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="65" />
                         </Grid.ColumnDefinitions>
                         <Entry Grid.Column="0" x:Name="txtDeviceName" TextColor="White" Margin="20,0,20,0"
                             PlaceholderColor="#0d6efd" FontAttributes="Bold" FontSize="25"></Entry>
-                        <ImageButton Grid.Column="1" Source="borrar.png" WidthRequest="20" HeightRequest="20"
+                        <ImageButton Grid.Column="1" Source="borrar.png" WidthRequest="50" HeightRequest="50"
                             BackgroundColor="Transparent" Margin="0,0,30,0" Clicked="DeleteDevice_Clicked"></ImageButton>
                     </Grid>
                     
@@ -50,7 +50,7 @@
                         </Grid>
                     </StackLayout>
 
-                    <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#13B57E"
+                    <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#0d6efd"
                             CornerRadius="30" Margin="100,15,100,15" FontSize="16" FontAttributes="Bold"
                             Clicked="SaveDeviceChanges_Clicked"></Button>
                 </StackLayout>
