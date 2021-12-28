@@ -6,13 +6,16 @@
     <StackLayout>
         <ScrollView>
             <StackLayout  VerticalOptions="StartAndExpand">
-                <StackLayout BackgroundColor="#7E8CA9" HorizontalOptions="Fill">
+                <StackLayout BackgroundColor="#2D60B3" Padding="8">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Text="Gestionar cuentas de Infante" TextColor="White" Margin="0"
-                                FontAttributes="Bold" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center">                            
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Gestionar cuentas infantiles" TextColor="White" Margin="20,0,20,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center">                            
                         </Label>
                     </Grid>
                 </StackLayout>
@@ -30,7 +33,7 @@
                     </StackLayout>
 
                     <Button VerticalOptions="Center" Text="Crear Infante" TextColor="White" BackgroundColor="#0d6efd"
-                            CornerRadius="30" Margin="100,15,100,15" FontSize="16" FontAttributes="Bold"
+                            CornerRadius="30" Margin="80,15,80,15" FontSize="18" FontAttributes="Bold"
                             Clicked="CreateInfantAccount_Clicked"></Button>
                 </StackLayout>
             </StackLayout>

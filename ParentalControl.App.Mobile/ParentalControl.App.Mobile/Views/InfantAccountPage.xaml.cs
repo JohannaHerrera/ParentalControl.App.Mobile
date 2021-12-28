@@ -60,7 +60,8 @@ namespace ParentalControl.App.Mobile.Views
                             Text = use.InfantName,
                             FontSize = 18,
                             VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            FontAttributes = FontAttributes.Bold
                         }, 1, rowCount);
 
                         ImageButton editButton;
@@ -170,17 +171,18 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Notifications_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new NotificationsPage());
         }
 
         private void MyAccount_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new MyProfilePage());
         }
 
         private void Logout_Clicked(object sender, EventArgs e)
         {
-
+            Xamarin.Essentials.Preferences.Clear();
+            _ = Navigation.PushAsync(new LoginPage());
         }
 
         private void CreateInfantAccount_Clicked(object sender, EventArgs e)

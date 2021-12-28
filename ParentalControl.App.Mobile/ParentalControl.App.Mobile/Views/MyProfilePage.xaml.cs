@@ -89,7 +89,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void InfantAccounts_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new InfantAccountPage());
         }
 
         private void Device_Clicked(object sender, EventArgs a)
@@ -104,7 +104,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Notifications_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new NotificationsPage());
         }
 
         private void MyAccount_Clicked(object sender, EventArgs a)

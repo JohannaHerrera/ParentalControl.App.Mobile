@@ -38,11 +38,6 @@ namespace ParentalControl.App.Mobile.Views
 
                         foreach (var news in response.NewsModelList)
                         {
-                            //Frame frame = new Frame
-                            //{
-                            //    BorderColor = Color.FromHex("#436D93")
-                            //};
-
                             var formattedString = new FormattedString();
                             formattedString.Spans.Add(new Span { Text = $"{news.NewsTitle}: ", FontAttributes = FontAttributes.Bold, TextColor = Color.FromHex("#2D60B3") });
                             formattedString.Spans.Add(new Span { Text = $"{news.NewsDescription}", FontAttributes = FontAttributes.Bold });
@@ -103,7 +98,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Notifications_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new NotificationsPage());
         }
 
         private void MyAccount_Clicked(object sender, EventArgs a)

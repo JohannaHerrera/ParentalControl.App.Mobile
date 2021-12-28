@@ -121,17 +121,18 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Notifications_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new NotificationsPage());
         }
 
         private void MyAccount_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new MyProfilePage());
         }
 
         private void Logout_Clicked(object sender, EventArgs e)
         {
-
+            Xamarin.Essentials.Preferences.Clear();
+            _ = Navigation.PushAsync(new LoginPage());
         }
 
         private void InfantGender_SelectedIndexChanged(object sender, EventArgs e)

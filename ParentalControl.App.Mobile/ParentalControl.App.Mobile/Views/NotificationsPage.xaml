@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentalControl.App.Mobile.Views.EditInfantAccountPage"
+             x:Class="ParentalControl.App.Mobile.Views.NotificationsPage"
              NavigationPage.HasNavigationBar="False">
+
     <StackLayout>
         <ScrollView>
             <StackLayout  VerticalOptions="StartAndExpand">
@@ -12,52 +13,22 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" x:Name="labelInfantName" TextColor="White" Margin="20,0,20,0"
-                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center">
-                        </Label>
+                        <Label Grid.Column="0" Text="Notificaciones" TextColor="White" Margin="20,0,20,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="20,30,20,10">
-                    <Grid HorizontalOptions="Center" Margin="10,0,10,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" x:Name="infantImage">
-                        </Image>
+                <StackLayout Padding="50,50,50,10" VerticalOptions="CenterAndExpand">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
                     </Grid>
-
-                    <Label HorizontalOptions="Center" Text="Modifique los datos del Infante:" TextColor="Black"
-                            FontAttributes="Bold" FontSize="20" Padding="0,30,0,0"></Label>
-
-                    <StackLayout>
-                        <Grid Margin="40,30,40,10" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Nombre:" TextColor="Black"
-                                FontSize="18" VerticalOptions="Center"></Label>
-                            <Entry Grid.Column="1" x:Name="infantName" FontSize="18" TextColor="Black"/>
-                        </Grid>
-                    </StackLayout>
-                    <StackLayout>
-                        <Grid Margin="40,10,40,10" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Género:" TextColor="Black"
-                                FontSize="18" VerticalOptions="Center"></Label>
-                            <Picker Grid.Column="1" x:Name="infantGender" FontSize="18" TextColor="Black" 
-                                    SelectedIndexChanged="InfantGender_SelectedIndexChanged"
-                                    Title="Seleccione..."/>
-                        </Grid>
-                    </StackLayout>
-
-                    <Button VerticalOptions="Center" x:Name="btnGuardar" Text="Guardar" TextColor="White" BackgroundColor="#0d6efd"
-                            CornerRadius="30" Margin="100,60,100,15" FontSize="18" FontAttributes="Bold"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
