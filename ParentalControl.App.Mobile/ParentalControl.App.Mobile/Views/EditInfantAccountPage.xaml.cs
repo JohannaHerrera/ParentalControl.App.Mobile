@@ -116,7 +116,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Schedules_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new SchedulePage());
         }
 
         private void Notifications_Clicked(object sender, EventArgs e)

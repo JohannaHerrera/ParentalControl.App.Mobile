@@ -26,17 +26,14 @@ namespace ParentalControl.App.Mobile.Views
             if(startPick!=null && endPick != null)
             {
                 
-                if (startPick.Time >= endPick.Time)
-                {
-                    _ = DisplayAlert("Error", "La hora de inicio debe ser mayor a la hora final", "OK");
-                }
-                else
+                
+                if (startPick.Time < endPick.Time)
                 {
                     ScheduleRegisterModel registerModel = new ScheduleRegisterModel();
-                    registerModel.ParentId= Convert.ToInt32(Preferences.Get("ParentId", "0"));
+                    registerModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
                     registerModel.ScheduleStartTime = Convert.ToDateTime(startPick.Time.ToString());
                     registerModel.ScheduleEndTime = Convert.ToDateTime(endPick.Time.ToString());
-                    
+
                     var response = await new ScheduleService().ScheduleCreate(registerModel);
                     if (response != null)
                     {
@@ -61,10 +58,48 @@ namespace ParentalControl.App.Mobile.Views
                     {
                         _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
                     }
+                    
+                }
+                else
+                {
+                    _ = DisplayAlert("Error", "La hora de inicio debe ser menor a la hora final", "OK");
                 }
             }
         }
+        private void Home_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new HomePage());
+        }
 
-        
+        private void InfantAccounts_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new InfantAccountPage());
+        }
+
+        private void Device_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new DevicePage());
+        }
+
+        private void Schedules_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new SchedulePage());
+        }
+
+        private void Notifications_Clicked(object sender, EventArgs a)
+        {
+
+        }
+
+        private void MyAccount_Clicked(object sender, EventArgs a)
+        {
+
+        }
+
+        private void Logout_Clicked(object sender, EventArgs a)
+        {
+
+        }
+
     }   
 }

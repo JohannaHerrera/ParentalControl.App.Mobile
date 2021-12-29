@@ -2,31 +2,35 @@
     
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentalControl.App.Mobile.Views.SchedulePage">
+             x:Class="ParentalControl.App.Mobile.Views.SchedulePage"
+             NavigationPage.HasNavigationBar="False">
+                
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <ScrollView>
                 <StackLayout  VerticalOptions="StartAndExpand">
                     <StackLayout BackgroundColor="White" Padding="8">
-                        
+                        <Label HorizontalOptions="Center" Text="Control Parental" TextColor="#13B57E"
+                         FontAttributes="Bold" FontSize="35"></Label>
                         <Label Text="Horarios"
                                HorizontalOptions="Center"
                                VerticalOptions="CenterAndExpand"
-                               TextColor="#13B57E"
-                               FontAttributes="Bold" FontSize="19" Padding="0,30,0,0"/>
-                        <Grid x:Name="ListSchedule">
+                               TextColor="#0d6efd"
+                               FontAttributes="Bold" FontSize="25" Padding="0,0,0,20"/>
+                        <Grid x:Name="ListSchedule"
+                               Margin="10,0,0,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="110" />
-                                <ColumnDefinition Width="110" />
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
             <StackLayout>
-                <ImageButton Grid.Column="0" Source="agregar.png" WidthRequest="50" HeightRequest="50"
+                <ImageButton Grid.Column="0" Source="agregar.png" WidthRequest="75" HeightRequest="75"
                                             BackgroundColor="Transparent" Margin="0,0,30,0" Clicked="CreateSchedule_Clicked"></ImageButton>
             </StackLayout>
 

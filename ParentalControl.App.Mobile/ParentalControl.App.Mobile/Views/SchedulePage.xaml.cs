@@ -16,27 +16,15 @@ namespace ParentalControl.App.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SchedulePage : ContentPage
     {
-        public static int idSchedule;
-        Button buttonEdit = new Button
-        {
-            Text = "Click to Rotate Text!",
-            VerticalOptions = LayoutOptions.CenterAndExpand,
-            HorizontalOptions = LayoutOptions.Center
-        };
-        Button buttonDelete = new Button
-        {
-            Text = "Click to Rotate Text!",
-            VerticalOptions = LayoutOptions.CenterAndExpand,
-            HorizontalOptions = LayoutOptions.Center
-        };
-        private List<ScheduleResponseModel> schedules = new List<ScheduleResponseModel>();
+
+
         public SchedulePage()
         {
             InitializeComponent();
-            LoadSchedule();
+            LoadInformation();
 
         }
-        public async void LoadSchedule()
+        public async void LoadInformation()
         {
             GetScheduleInfoModel getScheduleInfoModel = new GetScheduleInfoModel();
             getScheduleInfoModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
@@ -54,8 +42,6 @@ namespace ParentalControl.App.Mobile.Views
                     }
                     else
                     {
-
-                        idSchedule = item.ScheduleId;
                         ListSchedule.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
                         ListSchedule.Children.Add(new Label {Text = item.ScheduleStartTime, 
                                                 FontSize = 18,VerticalOptions = LayoutOptions.Center,
@@ -63,12 +49,23 @@ namespace ParentalControl.App.Mobile.Views
                         ListSchedule.Children.Add(new Label{Text = item.ScheduleEndTime,FontSize = 18,
                                                     VerticalOptions = LayoutOptions.Center, 
                                                     Padding = new Thickness(0, 0, 0, 8)}, 1, rowCount);
-                        ListSchedule.Children.Add(new Button { ImageSource = "edit.png",  BackgroundColor = Color.Transparent},2,rowCount);
-                        ListSchedule.Children.Add(new Button { ImageSource = "borrar.png", BackgroundColor = Color.Transparent }, 3, rowCount);
+
+                        ImageButton buttonEdit;                       
+                        ListSchedule.Children.Add(buttonEdit = new ImageButton
+                        {
+                            Source = "edit.png",
+                            BackgroundColor = Color.Transparent,
+                            VerticalOptions = LayoutOptions.Center
+                        }, 2, rowCount);
+                        ImageButton buttonDelete;
+                        ListSchedule.Children.Add(buttonDelete = new ImageButton { VerticalOptions = LayoutOptions.CenterAndExpand, Source = "borrar.png", BackgroundColor = Color.Transparent }, 3, rowCount);
                         rowCount++;
-                        this.buttonDelete.Clicked += EditSchedule_Clicked;
-                        this.buttonDelete.Clicked += DeleteSchedule_Clicked;
-                        //schedules.Add(item);
+                        buttonEdit.Command = new Command((infantId) => EditSchedule_Clicked(item.ScheduleId));
+                        buttonDelete.Command = new Command((infantId) => DeleteSchedule_Clicked(item.ScheduleId));
+
+
+                        //this.buttonDelete.Clicked += DeleteSchedule_Clicked;
+
                     }
                 }
 
@@ -79,18 +76,38 @@ namespace ParentalControl.App.Mobile.Views
                 _ = Navigation.PushAsync(new HomePage());
             }
         }
-        private void EditSchedule_Clicked(object sender, EventArgs a)
+        private void EditSchedule_Clicked(int id)
         {
-            Navigation.PushAsync(new ScheduleEditPage());
+            Navigation.PushAsync(new ScheduleEditPage(id));
         }
-        private void DeleteSchedule_Clicked(object sender, EventArgs a)
+        private async void DeleteSchedule_Clicked(int id)
         {
-
+            GetScheduleInfoModel infoModel = new GetScheduleInfoModel();
+            infoModel.ScheduleId = id;
+            var response = await new ScheduleService().DeleteSchedule(infoModel);
+            if (response!=null)
+            {
+                if (response.IsSuccess)
+                {
+                    _ = DisplayAlert("Aviso", "Se ha eliminado el horario con éxito.", "OK");
+                    LoadInformation();
+                    _ = Navigation.PushAsync(new SchedulePage());
+                }
+                else
+                {
+                    _ = DisplayAlert("Error", "No se pudo eliminar el horario. Inténtelo de nuevo.", "OK");
+                }
+            }
+            else
+            {
+                _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
+                _ = Navigation.PushAsync(new SchedulePage());
+            }
         }
         private void CreateSchedule_Clicked(object sender, EventArgs a)
         {
-            //Navigation.PushAsync(new ScheduleCreatePage());
-            Navigation.PushAsync(new ScheduleEditPage());
+            Navigation.PushAsync(new ScheduleCreatePage());
+
         }
         private void Home_Clicked(object sender, EventArgs a)
         {
@@ -99,7 +116,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void InfantAccounts_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new InfantAccountPage());
         }
 
         private void Device_Clicked(object sender, EventArgs a)
