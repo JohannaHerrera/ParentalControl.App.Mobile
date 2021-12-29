@@ -17,30 +17,33 @@ namespace ParentalControl.App.Mobile.Views
     public partial class SchedulePage : ContentPage
     {
         public static int idSchedule;
+
         Button buttonEdit = new Button
         {
             Text = "Click to Rotate Text!",
             VerticalOptions = LayoutOptions.CenterAndExpand,
             HorizontalOptions = LayoutOptions.Center
         };
+
         Button buttonDelete = new Button
         {
             Text = "Click to Rotate Text!",
             VerticalOptions = LayoutOptions.CenterAndExpand,
             HorizontalOptions = LayoutOptions.Center
         };
+
         private List<ScheduleResponseModel> schedules = new List<ScheduleResponseModel>();
+
         public SchedulePage()
         {
             InitializeComponent();
             LoadSchedule();
-
         }
+
         public async void LoadSchedule()
         {
             GetScheduleInfoModel getScheduleInfoModel = new GetScheduleInfoModel();
             getScheduleInfoModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
-            //getDeviceInfoModel.Action = 1; // Action = 1 (GetDeviceInfo)
             var response = await new ScheduleService().ScheduleIndex(getScheduleInfoModel);
             if (response.Count() > 0)
             {
@@ -68,7 +71,6 @@ namespace ParentalControl.App.Mobile.Views
                         rowCount++;
                         this.buttonDelete.Clicked += EditSchedule_Clicked;
                         this.buttonDelete.Clicked += DeleteSchedule_Clicked;
-                        //schedules.Add(item);
                     }
                 }
 
@@ -79,19 +81,22 @@ namespace ParentalControl.App.Mobile.Views
                 _ = Navigation.PushAsync(new HomePage());
             }
         }
+
         private void EditSchedule_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new ScheduleEditPage());
         }
+
         private void DeleteSchedule_Clicked(object sender, EventArgs a)
         {
 
         }
+
         private void CreateSchedule_Clicked(object sender, EventArgs a)
         {
-            //Navigation.PushAsync(new ScheduleCreatePage());
             Navigation.PushAsync(new ScheduleEditPage());
         }
+
         private void Home_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new HomePage());
@@ -99,7 +104,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void InfantAccounts_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new InfantAccountPage());
         }
 
         private void Device_Clicked(object sender, EventArgs a)
@@ -114,18 +119,19 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Notifications_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new NotificationsPage());
         }
 
         private void MyAccount_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new MyProfilePage());
         }
 
         private void Logout_Clicked(object sender, EventArgs a)
         {
-
+            Xamarin.Essentials.Preferences.Clear();
+            _ = DisplayAlert("Aviso", "Cerrando sesión...", "OK");
+            _ = Navigation.PushAsync(new LoginPage());
         }
-
     }
 }

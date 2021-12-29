@@ -99,7 +99,7 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Schedules_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new SchedulePage());
         }
 
         private void Notifications_Clicked(object sender, EventArgs a)
@@ -115,6 +115,7 @@ namespace ParentalControl.App.Mobile.Views
         private void Logout_Clicked(object sender, EventArgs a)
         {
             Xamarin.Essentials.Preferences.Clear();
+            _ = DisplayAlert("Aviso", "Cerrando sesión...", "OK");
             _ = Navigation.PushAsync(new LoginPage());
         }
     }
