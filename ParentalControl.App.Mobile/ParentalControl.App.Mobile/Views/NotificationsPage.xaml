@@ -19,14 +19,12 @@
                                 FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="50,50,50,10" VerticalOptions="CenterAndExpand">
-                    <Grid>
+                <StackLayout Padding="20,30,20,10" VerticalOptions="CenterAndExpand">
+                    <Grid x:Name="tblNotifications">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="130"/>
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </StackLayout>
