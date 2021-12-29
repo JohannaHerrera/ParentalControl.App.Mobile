@@ -15,19 +15,21 @@ namespace ParentalControl.App.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScheduleEditPage : ContentPage
     {
-        public ScheduleEditPage()
+        public ScheduleEditPage(int id)
         {
             InitializeComponent();
-            LoadSchedule();
+            LoadSchedule(id);
         }
-        public async void LoadSchedule()
+        public async void LoadSchedule(int id)
         {
             ScheduleEditFindModel getScheduleInfoModel = new ScheduleEditFindModel();
-            getScheduleInfoModel.ScheduleId= Convert.ToInt32(Preferences.Get("ParentId", "0"));
+            getScheduleInfoModel.ScheduleId= id;
             var response = await new ScheduleService().ScheduleFindEdit(getScheduleInfoModel);
+
             if (response!=null)
             {
 
+                int i = 1;
                 if (!string.IsNullOrEmpty(response.MessageError))
                 {
 
@@ -35,14 +37,53 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
+                    tblSchedule.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    tblSchedule.Children.Add(new Label
+                    {
+                        Text = "Desde: ",
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        FontSize = 20,
+                        TextColor = Color.Indigo,
+                        VerticalOptions = LayoutOptions.Center,
+                        Padding = new Thickness(0, 0, 0, 8)
+                    }, 0, 0);
+                    tblSchedule.Children.Add(new Label
+                    {
+                        Text = response.ScheduleStartTime,
+                        HorizontalOptions= LayoutOptions.CenterAndExpand,   
+                        FontSize = 20,
+                        TextColor = Color.Indigo,
+                        VerticalOptions = LayoutOptions.Center,
+                        Padding = new Thickness(0, 0, 0, 8)
+                    }, 1, 0) ;
+                    tblSchedule.Children.Add(new Label
+                    {
+                        Text = "Hasta: ",
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        FontSize = 20,
+                        TextColor = Color.Indigo,
+                        VerticalOptions = LayoutOptions.Center,
+                        Padding = new Thickness(0, 0, 0, 8)
+                    }, 2, 0);
+                    tblSchedule.Children.Add(new Label
+                    {
+                        Text = response.ScheduleEndTime,
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        FontSize = 20,
+                        TextColor = Color.Indigo,
+                        VerticalOptions = LayoutOptions.Center,  
+                        Padding = new Thickness(0, 0, 0, 8)
+                    }, 3, 0);
 
-                    DateTime horaI = Convert.ToDateTime(response.ScheduleStartTime);
-                    startPick.Time = horaI.TimeOfDay;
-                    DateTime horaF = Convert.ToDateTime(response.ScheduleEndTime);
-                    endPick.Time = horaF.TimeOfDay;
-                    //schedules.Add(item);
+
+                    //string hi = response.ScheduleStartTime;
+                    //DateTime horaI = DateTime("");
+                    //DateTime horaI = Convert.ToDateTime(hi);
+                    //startPick.Time = horaI.TimeOfDay;
+                    //DateTime horaF = Convert.ToDateTime(response.ScheduleEndTime);
+                    //endPick.Time = horaF.TimeOfDay;
                 }
-
+                btnGuardar.Command = new Command((infantAccountId) => Edit_Clicked(id));
 
             }
             else
@@ -51,26 +92,21 @@ namespace ParentalControl.App.Mobile.Views
                 _ = Navigation.PushAsync(new HomePage());
             }
         }
-
-        private async void Edit_Clicked(object sender, EventArgs a)
+        private async void Edit_Clicked(int id)
         {
             if (startPick != null && endPick != null)
             {
 
-                if (startPick.Time >= endPick.Time)
-                {
-                    _ = DisplayAlert("Error", "La hora de inicio debe ser mayor a la hora final", "OK");
-                }
-                else
+                if (startPick.Time < endPick.Time)
                 {
                     ScheduleUpdateModel updateModel = new ScheduleUpdateModel();
                     updateModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
                     updateModel.ScheduleStartTime = Convert.ToDateTime(startPick.Time.ToString());
                     updateModel.ScheduleEndTime = Convert.ToDateTime(endPick.Time.ToString());
-                    updateModel.ScheduleId = 1;
+                    updateModel.ScheduleId = id;
 
                     var response = await new ScheduleService().ScheduleUpdate(updateModel);
-                    if (response )
+                    if (response)
                     {
                         _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
                         _ = Navigation.PushAsync(new SchedulePage());
@@ -80,10 +116,13 @@ namespace ParentalControl.App.Mobile.Views
                         _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
                         _ = Navigation.PushAsync(new SchedulePage());
                     }
+                    }
+                else
+                {
+                    _ = DisplayAlert("Error", "La hora de inicio debe ser mayor a la hora final", "OK");
                 }
             }
         }
-
         private void Home_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new HomePage());

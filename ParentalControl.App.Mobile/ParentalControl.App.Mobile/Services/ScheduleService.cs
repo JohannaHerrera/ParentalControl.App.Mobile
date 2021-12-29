@@ -1,22 +1,21 @@
-﻿using System;
+﻿using ParentalControl.App.Mobile.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using ParentalControl.App.Mobile.Interfaces;
 using ParentalControl.App.Mobile.Models;
-using System.Threading.Tasks;
-using System.Net.Http;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ParentalControl.App.Mobile.Services
 {
     class ScheduleService : IScheduleService
     {
-        public async Task<List<ScheduleResponseModel>> ScheduleIndex (GetScheduleInfoModel getScheduleInfoModel)
+        public async Task<List<ScheduleResponseModel>> ScheduleIndex(GetScheduleInfoModel getScheduleInfoModel)
         {
             HttpClient client = new HttpClient();
             Constants constants = new Constants();
-
             client.BaseAddress = new Uri(constants.Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -24,6 +23,7 @@ namespace ParentalControl.App.Mobile.Services
             var content = new StringContent(body, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await client.PostAsync("api/Schedule", content);
+
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -36,8 +36,7 @@ namespace ParentalControl.App.Mobile.Services
                 return null;
             }
         }
-
-        public async Task<ScheduleResponseModel> ScheduleCreate(ScheduleRegisterModel scheduleRegisterModel)
+        public async Task<ScheduleResponseModel> DeleteSchedule(GetScheduleInfoModel scheduleInfoModel)
         {
             HttpClient client = new HttpClient();
             Constants constants = new Constants();
@@ -45,11 +44,10 @@ namespace ParentalControl.App.Mobile.Services
             client.BaseAddress = new Uri(constants.Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var body = JsonConvert.SerializeObject(scheduleRegisterModel);
+            var body = JsonConvert.SerializeObject(scheduleInfoModel);
             var content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PutAsync("api/ScheduleManage", content);
-            
+            HttpResponseMessage response = await client.PostAsync("api/ScheduleDelete", content);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -62,7 +60,7 @@ namespace ParentalControl.App.Mobile.Services
                 return null;
             }
         }
-        public async Task<ScheduleResponseModel> ScheduleFindEdit(ScheduleEditFindModel getScheduleInfoModel)
+        public async Task<ScheduleResponseModel> ScheduleCreate(ScheduleRegisterModel createModel)
         {
             HttpClient client = new HttpClient();
             Constants constants = new Constants();
@@ -70,10 +68,10 @@ namespace ParentalControl.App.Mobile.Services
             client.BaseAddress = new Uri(constants.Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var body = JsonConvert.SerializeObject(getScheduleInfoModel);
+            var body = JsonConvert.SerializeObject(createModel);
             var content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync("api/ScheduleEditFind", content);
+            HttpResponseMessage response = await client.PostAsync("api/ScheduleManage", content);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -86,7 +84,7 @@ namespace ParentalControl.App.Mobile.Services
                 return null;
             }
         }
-        public async Task<bool> ScheduleUpdate(ScheduleUpdateModel scheduleUpdateModel)
+        public async Task<bool> ScheduleUpdate(ScheduleUpdateModel updateModel)
         {
             HttpClient client = new HttpClient();
             Constants constants = new Constants();
@@ -94,7 +92,7 @@ namespace ParentalControl.App.Mobile.Services
             client.BaseAddress = new Uri(constants.Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var body = JsonConvert.SerializeObject(scheduleUpdateModel);
+            var body = JsonConvert.SerializeObject(updateModel);
             var content = new StringContent(body, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await client.PutAsync("api/ScheduleManage", content);
@@ -110,18 +108,18 @@ namespace ParentalControl.App.Mobile.Services
                 return false;
             }
         }
-        public async Task<ScheduleResponseModel> DeleteSchedule(GetScheduleInfoModel scheduleInfoModel)
+        public async Task<ScheduleResponseModel> ScheduleFindEdit(ScheduleEditFindModel getScheduleInfoModel)
         {
             HttpClient client = new HttpClient();
             Constants constants = new Constants();
-
             client.BaseAddress = new Uri(constants.Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            var body = JsonConvert.SerializeObject(scheduleInfoModel);
+            var body = JsonConvert.SerializeObject(getScheduleInfoModel);
             var content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PutAsync("api/ScheduleDelete", content);
+            HttpResponseMessage response = await client.PostAsync("api/ScheduleEditFind", content);
+
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -134,5 +132,7 @@ namespace ParentalControl.App.Mobile.Services
                 return null;
             }
         }
+
     }
+
 }

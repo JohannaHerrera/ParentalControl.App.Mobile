@@ -3,29 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ParentalControl.App.Mobile.Views.ScheduleCreatePage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="WhiteSmoke" Margin="20,20,20,20">
+        <StackLayout BackgroundColor="White" Margin="0,0,0,0" >
             <Label HorizontalOptions="Center" Text="Control Parental" TextColor="#13B57E"
                    FontAttributes="Bold" FontSize="35"></Label>
             <Label HorizontalOptions="Center" Text="Ingresar Nuevo Horario" TextColor="#0d6efd"
                    FontAttributes="Bold" FontSize="25" Padding="0,0,0,20"></Label>
-            <Label HorizontalOptions="Center" Text="Inicio" TextColor="#13B57E"
-                   FontAttributes="Bold" FontSize="15" Padding="0,0,0,20"></Label>
+            <Label HorizontalOptions="Fill" Text="Inicio" TextColor="SlateGray"
+                   FontAttributes="Bold" FontSize="25" Padding="0,0,0,20"  Margin="10,0,0,0"></Label>
             <Grid x:Name="startTime">
-                <TimePicker x:Name="startPick">
+                <TimePicker x:Name="startPick"
+                            TextColor="Indigo"
+                            FontSize="25"
+                            HorizontalOptions="Fill"
+                            Margin="10,0,0,0">
                     
                 </TimePicker>
             </Grid>
-            <Label HorizontalOptions="Center" Text="Final" TextColor="#13B57E"
-                   FontAttributes="Bold" FontSize="15" Padding="0,0,0,20"></Label>
+            <Label HorizontalOptions="Fill" Text="Final" TextColor="#SlateGray"
+                   FontAttributes="Bold" FontSize="25" Padding="0,0,0,20" Margin="10,0,0,0"></Label>
             <Grid x:Name="endTime">
                 <TimePicker x:Name="endPick"
-                            >
+                            TextColor="Indigo"
+                            FontSize="25"
+                            HorizontalOptions="Fill"
+                             Margin="10,0,0,0">
 
                 </TimePicker>
             </Grid>
             <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#13B57E"
                     CornerRadius="30" Margin="50,20,50,15" Clicked="Create_Clicked"></Button>
-
+            <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
+                        BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Schedules_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Notifications_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Logout_Clicked"></ImageButton>
+                </Grid>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
