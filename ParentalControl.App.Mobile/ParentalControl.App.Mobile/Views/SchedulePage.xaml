@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentalControl.App.Mobile.Views.SchedulePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout  VerticalOptions="StartAndExpand">
+                    <StackLayout BackgroundColor="White" Padding="8">
+                        
+                        <Label Text="Horarios"
+                               HorizontalOptions="Center"
+                               VerticalOptions="CenterAndExpand"
+                               TextColor="#13B57E"
+                               FontAttributes="Bold" FontSize="19" Padding="0,30,0,0"/>
+                        <Grid x:Name="ListSchedule">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout>
+                <ImageButton Grid.Column="0" Source="agregar.png" WidthRequest="50" HeightRequest="50"
+                                            BackgroundColor="Transparent" Margin="0,0,30,0" Clicked="CreateSchedule_Clicked"></ImageButton>
+            </StackLayout>
+
+            <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
+                        BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Schedules_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Notifications_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked"></ImageButton>
+                    <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Logout_Clicked"></ImageButton>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
