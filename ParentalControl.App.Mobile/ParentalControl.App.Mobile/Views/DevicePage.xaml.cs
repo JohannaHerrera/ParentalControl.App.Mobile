@@ -1,4 +1,5 @@
-﻿using ParentalControl.App.Mobile.Models;
+﻿using ParentalControl.App.Mobile.Interfaces;
+using ParentalControl.App.Mobile.Models;
 using ParentalControl.App.Mobile.Services;
 using Plugin.DeviceInfo;
 using System;
@@ -137,6 +138,7 @@ namespace ParentalControl.App.Mobile.Views
                         _ = DisplayAlert("Aviso", "El dispositivo se eliminó correctamente.", "OK");                        
                         Xamarin.Essentials.Preferences.Clear();
                         _ = Navigation.PushAsync(new LoginPage());
+                        DependencyService.Get<IAndroidService>().StopService();
                     }
                     else
                     {

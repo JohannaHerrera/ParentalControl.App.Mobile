@@ -28,8 +28,6 @@ namespace ParentalControl.App.Mobile.Views
 
             if (response!=null)
             {
-
-                int i = 1;
                 if (!string.IsNullOrEmpty(response.MessageError))
                 {
 
@@ -37,51 +35,47 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
-                    tblSchedule.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    tblSchedule.RowDefinitions.Add(new RowDefinition ());
                     tblSchedule.Children.Add(new Label
                     {
                         Text = "Desde: ",
                         HorizontalOptions = LayoutOptions.CenterAndExpand,
                         FontSize = 20,
-                        TextColor = Color.Indigo,
+                        TextColor = Color.Gray,
                         VerticalOptions = LayoutOptions.Center,
-                        Padding = new Thickness(0, 0, 0, 8)
+                        FontAttributes = FontAttributes.Bold,
+                        Padding = new Thickness(0, 0, 0, 8),
                     }, 0, 0);
+
                     tblSchedule.Children.Add(new Label
                     {
                         Text = response.ScheduleStartTime,
                         HorizontalOptions= LayoutOptions.CenterAndExpand,   
                         FontSize = 20,
-                        TextColor = Color.Indigo,
+                        TextColor = Color.Gray,
                         VerticalOptions = LayoutOptions.Center,
                         Padding = new Thickness(0, 0, 0, 8)
                     }, 1, 0) ;
+
                     tblSchedule.Children.Add(new Label
                     {
                         Text = "Hasta: ",
                         HorizontalOptions = LayoutOptions.CenterAndExpand,
                         FontSize = 20,
-                        TextColor = Color.Indigo,
+                        TextColor = Color.Gray,
                         VerticalOptions = LayoutOptions.Center,
-                        Padding = new Thickness(0, 0, 0, 8)
+                        Padding = new Thickness(0, 0, 0, 8),
+                        FontAttributes = FontAttributes.Bold,
                     }, 2, 0);
                     tblSchedule.Children.Add(new Label
                     {
                         Text = response.ScheduleEndTime,
                         HorizontalOptions = LayoutOptions.CenterAndExpand,
                         FontSize = 20,
-                        TextColor = Color.Indigo,
+                        TextColor = Color.Gray,
                         VerticalOptions = LayoutOptions.Center,  
                         Padding = new Thickness(0, 0, 0, 8)
                     }, 3, 0);
-
-
-                    //string hi = response.ScheduleStartTime;
-                    //DateTime horaI = DateTime("");
-                    //DateTime horaI = Convert.ToDateTime(hi);
-                    //startPick.Time = horaI.TimeOfDay;
-                    //DateTime horaF = Convert.ToDateTime(response.ScheduleEndTime);
-                    //endPick.Time = horaF.TimeOfDay;
                 }
                 btnGuardar.Command = new Command((infantAccountId) => Edit_Clicked(id));
 
@@ -123,6 +117,12 @@ namespace ParentalControl.App.Mobile.Views
                 }
             }
         }
+
+        private void Back_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new SchedulePage());
+        }
+
         private void Home_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new HomePage());

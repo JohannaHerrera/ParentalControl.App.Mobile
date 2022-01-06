@@ -18,5 +18,7 @@ namespace ParentalControl.App.Mobile.Models
 
         [JsonProperty("MessageError")]
         public string MessageError { get; set; }
+        [JsonProperty("IsFirstTime")]
+        public bool IsFirstTime { get; set; }
     }
 }

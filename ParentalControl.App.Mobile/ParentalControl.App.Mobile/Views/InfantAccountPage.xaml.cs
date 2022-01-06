@@ -83,14 +83,14 @@ namespace ParentalControl.App.Mobile.Views
                         deleteButton.Command = new Command((infantId) => OnDeleteImageButtonClicked(use.InfantAccountId));
 
 
-                        ImageButton ib;
-                        tblInfantAccount.Children.Add(ib = new ImageButton
+                        ImageButton rulesButton;
+                        tblInfantAccount.Children.Add(rulesButton = new ImageButton
                         {
                             VerticalOptions = LayoutOptions.Center,
                             BackgroundColor = Color.Transparent,
                             Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/flecha_correcta.png"
                         }, 4, rowCount);
-                        //ib.Clicked += OnImageButtonClicked;
+                        rulesButton.Command = new Command((infantId) => OnRulesImageButtonClicked(use.InfantAccountId));
                         rowCount++;
                     }
 
@@ -144,9 +144,9 @@ namespace ParentalControl.App.Mobile.Views
             }
         }
 
-        private void OnRulesImageButtonClicked(object sender, EventArgs e)
+        private void OnRulesImageButtonClicked(int infantId)
         {
-            Navigation.PushAsync(new HomePage());
+            Navigation.PushAsync(new InfantRulesPage(infantId));
         }
 
         private void Home_Clicked(object sender, EventArgs a)

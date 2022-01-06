@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentalControl.App.Mobile.Views.CreateInfantAccountPage"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="ParentalControl.App.Mobile.Views.InfantRulesPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit">
+    
     <StackLayout>
         <ScrollView>
             <StackLayout  VerticalOptions="StartAndExpand">
@@ -18,50 +20,41 @@
                         <ImageButton Grid.Column="0" Source="flecha_izquierda.png" WidthRequest="20" 
                                      HeightRequest="20" Clicked="Back_Clicked" Margin="10,0,0,0"
                                      BackgroundColor="Transparent"></ImageButton>
-                        <Label Grid.Column="1" Text="Crear cuenta infantil" TextColor="White" Margin="10,0,0,0"
+                        <Label Grid.Column="1" Text="Configurar Reglas" TextColor="White" Margin="10,0,0,0"
                                 FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
                     </Grid>
                 </StackLayout>
-                <StackLayout Padding="20,30,20,10">
-                    <Grid HorizontalOptions="Center" Margin="10,0,10,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" 
-                               Source="../ParentalControl.App.Mobile.Android/Resources/drawable/children.png">
-                        </Image>
-                    </Grid>
-                    
-                    <Label HorizontalOptions="Center" Text="Ingrese los datos del Infante:" TextColor="Black"
-                            FontAttributes="Bold" FontSize="20" Padding="0,30,0,0"></Label>
-
-                    <StackLayout>
-                        <Grid Margin="40,30,40,10" HorizontalOptions="Center">
+                <StackLayout Padding="20,30,20,10" VerticalOptions="CenterAndExpand">
+                    <xct:Expander >
+                        <xct:Expander.Header>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Text="Configurar Reglas" TextColor="Black" Margin="10,0,0,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
+                                <Label Grid.Row="1" Text="Configurar Reglas" TextColor="Black" Margin="10,0,0,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
+                            </Grid>
+                        </xct:Expander.Header>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"></ColumnDefinition>
-                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Nombre:" TextColor="Black"
-                                FontSize="18" VerticalOptions="Center"></Label>
-                            <Entry Grid.Column="1" x:Name="infantName" FontSize="18" TextColor="Black"/>
+                            <Image Source="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg" 
+                       Aspect="AspectFill"
+                       HeightRequest="120" 
+                       WidthRequest="120" />
+                            <Label Grid.Column="1"
+                       Text="Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae."
+                       FontAttributes="Italic" />
                         </Grid>
-                    </StackLayout>
-                    <StackLayout>
-                        <Grid Margin="40,10,40,10" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"></ColumnDefinition>
-                                <ColumnDefinition Width="150"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Género:" TextColor="Black"
-                                FontSize="18" VerticalOptions="Center"></Label>
-                            <Picker Grid.Column="1" x:Name="infantGender" FontSize="18" TextColor="Black" 
-                                    SelectedIndexChanged="InfantGender_SelectedIndexChanged" Title="Seleccione..."/>
-                        </Grid>
-                    </StackLayout>
-
-                    <Button VerticalOptions="Center" Text="Guardar" TextColor="White" BackgroundColor="#0d6efd"
-                            CornerRadius="30" Margin="100,60,100,15" FontSize="18" FontAttributes="Bold"
-                            Clicked="CreateInfantAccount_Clicked"></Button>
+                    </xct:Expander>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

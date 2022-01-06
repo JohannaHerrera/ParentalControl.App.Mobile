@@ -41,13 +41,13 @@ namespace ParentalControl.App.Mobile.Views
                     }
                     else
                     {
-                        ListSchedule.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                        ListSchedule.RowDefinitions.Add(new RowDefinition { Height = 40 });
                         ListSchedule.Children.Add(new Label {Text = item.ScheduleStartTime, 
-                                                FontSize = 18,VerticalOptions = LayoutOptions.Center,
-                                                Padding = new Thickness(0, 0, 0, 8) },0, rowCount);
+                                                FontSize = 18, VerticalOptions = LayoutOptions.CenterAndExpand,
+                                                Margin = new Thickness(0, 0, 0, 8) },0, rowCount);
                         ListSchedule.Children.Add(new Label{Text = item.ScheduleEndTime,FontSize = 18,
-                                                    VerticalOptions = LayoutOptions.Center, 
-                                                    Padding = new Thickness(0, 0, 0, 8)}, 1, rowCount);
+                                                    VerticalOptions = LayoutOptions.CenterAndExpand,
+                                                    Margin = new Thickness(0, 0, 0, 8)}, 1, rowCount);
 
                         ImageButton buttonEdit;                       
                         ListSchedule.Children.Add(buttonEdit = new ImageButton
@@ -61,13 +61,8 @@ namespace ParentalControl.App.Mobile.Views
                         rowCount++;
                         buttonEdit.Command = new Command((infantId) => EditSchedule_Clicked(item.ScheduleId));
                         buttonDelete.Command = new Command((infantId) => DeleteSchedule_Clicked(item.ScheduleId));
-
-
-                        //this.buttonDelete.Clicked += DeleteSchedule_Clicked;
-
                     }
                 }
-
             }
             else
             {

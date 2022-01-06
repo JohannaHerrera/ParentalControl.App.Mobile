@@ -1,5 +1,6 @@
 ﻿using Android.Content.PM;
 using Newtonsoft.Json;
+using ParentalControl.App.Mobile.Interfaces;
 using ParentalControl.App.Mobile.Models;
 using ParentalControl.App.Mobile.Services;
 using Plugin.DeviceInfo;
@@ -76,6 +77,11 @@ namespace ParentalControl.App.Mobile.Views
                                 Preferences.Set("ParentEmail", response.ParentEmail);
 
                                 _ = Navigation.PushAsync(new HomePage());
+
+                                if (response.IsFirstTime)
+                                {
+                                    DependencyService.Get<IAndroidService>().StartService();
+                                }
                             }
                         }
                     }
