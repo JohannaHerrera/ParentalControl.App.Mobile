@@ -108,6 +108,11 @@ namespace ParentalControl.App.Mobile.Views
             Navigation.PushAsync(new EditInfantAccountPage(infantId));
         }
 
+        private void OnRulesImageButtonClicked(int infantId)
+        {
+            Navigation.PushAsync(new InfantAccountRulesPage(infantId));
+        }
+
         private async void OnDeleteImageButtonClicked(int infantId)
         {
             GetInfantAccountInfoModel getInfantAccountInfoModel = new GetInfantAccountInfoModel();
