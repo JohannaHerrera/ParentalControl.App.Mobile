@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ParentalControl.App.Mobile.Views.InfantAccountRulesPage"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <ScrollView>
+            <StackLayout  VerticalOptions="StartAndExpand">
+                <StackLayout BackgroundColor="#2D60B3" Padding="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="320" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" x:Name="labelInfantName" TextColor="White" Margin="20,0,20,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center">
+                        </Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Padding="20,30,20,10">
+                    <behaviors:Expander>
+                        <behaviors:Expander.Header>
+                            <Label Text="Bloqueo Web" FontAttributes="Bold" FontSize="Medium" BackgroundColor="#2D60B3" TextColor="White" Padding="10,10,0,10" />
+                        </behaviors:Expander.Header>
+                        <Grid x:Name="tblBloqueoWeb" Padding="15" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>                            
+                        </Grid>
+                    </behaviors:Expander>
+                    <behaviors:Expander>
+                        <behaviors:Expander.Header>
+                            <Label Text="Bloqueo de Aplicaciones" FontAttributes="Bold" FontSize="Medium" BackgroundColor="#2D60B3 " TextColor="White" Padding="10,10,0,10"/>
+                        </behaviors:Expander.Header>
+                        <Grid x:Name="tblBloqueoAplicaciones" Padding="15" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>                            
+                        </Grid>
+                    </behaviors:Expander>
+                    <behaviors:Expander>
+                        <behaviors:Expander.Header>
+                            <Label Text="Tiempo de Uso del Dispositivo" FontAttributes="Bold" FontSize="Medium" BackgroundColor="#2D60B3" TextColor="White" Padding="10,10,0,10"/>
+                        </behaviors:Expander.Header>
+                        <Grid x:Name="tblUsoDispositivo" Padding="15" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>                            
+                        </Grid>
+                    </behaviors:Expander>
+                    <behaviors:Expander>
+                        <behaviors:Expander.Header>
+                            <Label Text="Historial" FontAttributes="Bold" FontSize="Medium" BackgroundColor="#2D60B3" TextColor="White" Padding="10,10,0,10"/>
+                        </behaviors:Expander.Header>
+                        <Grid x:Name="tblHistorial" Padding="15" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>                            
+                        </Grid>
+                    </behaviors:Expander>
+                    <Button VerticalOptions="Center" x:Name="btnGuardar" Text="Guardar" TextColor="White" BackgroundColor="#0d6efd"
+                            CornerRadius="30" Margin="100,60,100,15" FontSize="18" FontAttributes="Bold"
+                            Clicked="SaveRulesChanges_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout Padding="10,10,10,10" BackgroundColor="#0d6efd" VerticalOptions="EndAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ImageButton Grid.Column="0" Source="controlParentalLogo.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="Home_Clicked"></ImageButton>
+                <ImageButton Grid.Column="1" Source="children.png" WidthRequest="20" HeightRequest="20"
+                        BackgroundColor="Transparent" Clicked="InfantAccounts_Clicked"></ImageButton>
+                <ImageButton Grid.Column="2" Source="devices.png" WidthRequest="30" HeightRequest="30"
+                        BackgroundColor="Transparent" Clicked="Device_Clicked"></ImageButton>
+                <ImageButton Grid.Column="3" Source="calendario.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Schedules_Clicked"></ImageButton>
+                <ImageButton Grid.Column="4" Source="notificaciones.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Notifications_Clicked"></ImageButton>
+                <ImageButton Grid.Column="5" Source="user.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="MyAccount_Clicked"></ImageButton>
+                <ImageButton Grid.Column="6" Source="logout.png" WidthRequest="10" HeightRequest="10"
+                        BackgroundColor="Transparent" Clicked="Logout_Clicked"></ImageButton>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
