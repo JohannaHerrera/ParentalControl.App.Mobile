@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.App.Usage;
 using Android.Content;
 using Android.Content.PM;
 using Java.IO;
@@ -37,6 +38,10 @@ namespace ParentalControl.App.Mobile.Services
 
                         var apps = Android.App.Application.Context.PackageManager.GetInstalledApplications(PackageInfoFlags.MatchAll);
                         ActivityManager amg = (ActivityManager)Android.App.Application.Context.GetSystemService(Context.ActivityService);
+                        UsageStatsManager m = (UsageStatsManager)Android.App.Application.Context.GetSystemService(Context.UsageStatsService);
+
+                        Android.App.Usage.UsageStatsInterval usageStatsInterval = Android.App.Usage.UsageStatsInterval.Daily;
+                        var stats = m.QueryUsageStats(usageStatsInterval, 100, 100);
 
                         string nombre = string.Empty;
 
@@ -59,8 +64,7 @@ namespace ParentalControl.App.Mobile.Services
                                 //Java.Lang.Process process = Java.Lang.Runtime.GetRuntime()?.Exec($"adb shell -> ps -A | grep {app.PackageName}");
                                 //var result = process?.WaitFor();
 
-
-
+                                bool result = m.IsAppInactive(app.PackageName);
 
                                 Android.OS.Process.KillProcess(app.Uid);
                             }

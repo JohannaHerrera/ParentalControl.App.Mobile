@@ -101,5 +101,10 @@ namespace ParentalControl.App.Mobile.Views
         {
             Navigation.PushAsync(new RegisterPage());
         }
-    }
+
+        private void BackInfant_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new InfantPrincipalPage());
+        }
+}
 }

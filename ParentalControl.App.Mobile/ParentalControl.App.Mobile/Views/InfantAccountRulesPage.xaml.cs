@@ -43,9 +43,13 @@ namespace ParentalControl.App.Mobile.Views
             DeviceUseRulesModel deviceUseRulesModel = new DeviceUseRulesModel();
             WebConfigurationRulesModel webConfigurationRulesModel = new WebConfigurationRulesModel();
 
+            GetAppConfigurationModel getAppConfigurationModel = new GetAppConfigurationModel();
+            getAppConfigurationModel.InfantAccountId = infantId;
+            getAppConfigurationModel.DevicePhoneCode = CrossDeviceInfo.Current.Id;
+
             var response = await new InfantAccountService().GetDeleteInfantAccount(getInfantAccountInfoModel);
             var responseActivity = await new RulesService().GetActivityRules(getInfantAccountInfoModel.InfantAccountId.ToString());
-            var responseApp = await new RulesService().GetAppRules(getInfantAccountInfoModel.InfantAccountId.ToString());
+            var responseApp = await new RulesService().GetAppRules(getAppConfigurationModel);
             var responseDeviceUse = await new RulesService().GetDeviceUseRules(getInfantAccountInfoModel.InfantAccountId.ToString());
             var responseWebConfiguration = await new RulesService().GetWebConfigurationRules(getInfantAccountInfoModel.InfantAccountId.ToString());
 
@@ -80,7 +84,7 @@ namespace ParentalControl.App.Mobile.Views
                                 FontSize = 18,
                                 TextColor = Color.Black,
                                 VerticalOptions = LayoutOptions.Center,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                HorizontalOptions = LayoutOptions.StartAndExpand,
                                 FontAttributes = FontAttributes.Bold
                             }, 0, rowCount);
                             rowCount++;
@@ -96,7 +100,7 @@ namespace ParentalControl.App.Mobile.Views
                             FontSize = 18,
                             TextColor = Color.Black,
                             VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            HorizontalOptions = LayoutOptions.StartAndExpand,
                             FontAttributes = FontAttributes.Bold
                         }, 0, rowCount);
                     }
@@ -106,7 +110,7 @@ namespace ParentalControl.App.Mobile.Views
                     {
                         foreach (var use in responseApp.appRulesModelList)
                         {
-                            tblBloqueoAplicaciones.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                            tblBloqueoAplicaciones.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto});
 
                             tblBloqueoAplicaciones.Children.Add(new Label
                             {
@@ -114,11 +118,15 @@ namespace ParentalControl.App.Mobile.Views
                                 FontSize = 18,
                                 TextColor = Color.Black,
                                 VerticalOptions = LayoutOptions.Center,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                HorizontalOptions = LayoutOptions.StartAndExpand,
                                 FontAttributes = FontAttributes.Bold
                             }, 0, rowCount);
 
-                            Picker picker = new Picker { Title = "Desbloquear/Bloquear", FontSize = 18, VerticalOptions = LayoutOptions.Center };
+                            Picker picker = new Picker 
+                            {   Title = "Desbloquear/Bloquear", FontSize = 18, 
+                                VerticalOptions = LayoutOptions.Center,                                
+                            };
+
                             List<string> blockList = new List<string>()
                             {
                                 "Bloquear",
@@ -181,7 +189,7 @@ namespace ParentalControl.App.Mobile.Views
                             FontSize = 18,
                             TextColor = Color.Black,
                             VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            HorizontalOptions = LayoutOptions.StartAndExpand,
                             FontAttributes = FontAttributes.Bold
                         }, 0, rowCount);
                     }
@@ -199,7 +207,7 @@ namespace ParentalControl.App.Mobile.Views
                                 FontSize = 18,
                                 TextColor = Color.Black,
                                 VerticalOptions = LayoutOptions.Center,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                HorizontalOptions = LayoutOptions.StartAndExpand,
                                 FontAttributes = FontAttributes.Bold
                             }, 0, rowCount);
 
@@ -234,7 +242,7 @@ namespace ParentalControl.App.Mobile.Views
                             FontSize = 18,
                             TextColor = Color.Black,
                             VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            HorizontalOptions = LayoutOptions.StartAndExpand,
                             FontAttributes = FontAttributes.Bold
                         }, 0, rowCount);
                     }
@@ -246,16 +254,55 @@ namespace ParentalControl.App.Mobile.Views
                         {
                             tblBloqueoWeb.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-                            tblBloqueoWeb.Children.Add(new Label
+                            if (use.CategoryId == 1)
                             {
-                                Text = use.CategoryId.ToString(),
-                                FontSize = 18,
-                                TextColor = Color.Black,
-                                VerticalOptions = LayoutOptions.Center,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                                FontAttributes = FontAttributes.Bold
-                            }, 0, rowCount);
-
+                                tblBloqueoWeb.Children.Add(new Label
+                                {
+                                    Text = "Drogas",
+                                    FontSize = 18,
+                                    TextColor = Color.Black,
+                                    VerticalOptions = LayoutOptions.Center,
+                                    HorizontalOptions = LayoutOptions.StartAndExpand,
+                                    FontAttributes = FontAttributes.Bold
+                                }, 0, rowCount);
+                            } 
+                            else if (use.CategoryId == 2)
+                            {
+                                tblBloqueoWeb.Children.Add(new Label
+                                {
+                                    Text = "Pornografía",
+                                    FontSize = 18,
+                                    TextColor = Color.Black,
+                                    VerticalOptions = LayoutOptions.Center,
+                                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                    FontAttributes = FontAttributes.Bold
+                                }, 0, rowCount);
+                            }
+                            else if (use.CategoryId == 3)
+                            {
+                                tblBloqueoWeb.Children.Add(new Label
+                                {
+                                    Text = "Videojuegos",
+                                    FontSize = 18,
+                                    TextColor = Color.Black,
+                                    VerticalOptions = LayoutOptions.Center,
+                                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                    FontAttributes = FontAttributes.Bold
+                                }, 0, rowCount);
+                            }
+                            else
+                            {
+                                tblBloqueoWeb.Children.Add(new Label
+                                {
+                                    Text = "Violencia",
+                                    FontSize = 18,
+                                    TextColor = Color.Black,
+                                    VerticalOptions = LayoutOptions.Center,
+                                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                    FontAttributes = FontAttributes.Bold
+                                }, 0, rowCount);
+                            }
+                            
                             Picker pickerCategory = new Picker { Title = "Desbloquear/Bloquear", FontSize = 18, VerticalOptions = LayoutOptions.Center };
                             List<string> bloqueoList = new List<string>()
                             {
@@ -301,7 +348,7 @@ namespace ParentalControl.App.Mobile.Views
                             FontSize = 18,
                             TextColor = Color.Black,
                             VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            HorizontalOptions = LayoutOptions.StartAndExpand,
                             FontAttributes = FontAttributes.Bold
                         }, 0, rowCount);
                     }
@@ -313,6 +360,16 @@ namespace ParentalControl.App.Mobile.Views
                 _ = Navigation.PushAsync(new HomePage());
             }
 
+        }
+
+        private void BlockPicker(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Back_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new InfantAccountPage());
         }
 
         private void Home_Clicked(object sender, EventArgs e)
@@ -374,7 +431,7 @@ namespace ParentalControl.App.Mobile.Views
                     try
                     {
                         var label = item as Label;
-                        updateWebConfigurationRulesModel.CategoryId = Int32.Parse(label.Text);
+                        updateWebConfigurationRulesModel.CategoryName = label.Text;
                         updateWebConfigurationRulesModel.InfantAccountId = infantIdAux;
                         webConfigurationRulesModelList.Add(updateWebConfigurationRulesModel);
                         cont++;
@@ -465,7 +522,7 @@ namespace ParentalControl.App.Mobile.Views
                 else
                 {
                     _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
-                    _ = Navigation.PushAsync(new HomePage());
+                    _ = Navigation.PushAsync(new InfantAccountPage());
                 }
 
             }

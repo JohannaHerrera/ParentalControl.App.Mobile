@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentalControl.App.Mobile.Views.RequestPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <ScrollView>
+            <StackLayout  VerticalOptions="StartAndExpand">
+                <StackLayout BackgroundColor="#2D60B3" Padding="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="0" Source="flecha_izquierda.png" WidthRequest="20" 
+                                     HeightRequest="20" Clicked="Back_Clicked" Margin="10,0,0,0"
+                                     BackgroundColor="Transparent"></ImageButton>
+                        <Label Grid.Column="1" Text="Realizar Petición" TextColor="White" Margin="10,0,10,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Padding="10,10,10,10">
+                    <Label HorizontalOptions="Start" Text="Categorías Web Bloqueadas" TextColor="#2C82FF"
+                            FontAttributes="Bold" FontSize="20" Margin="15,0,0,0"></Label>
+
+                    <Label BackgroundColor="#293868" HeightRequest="3" Margin="15,0,60,0"></Label>
+
+                    <StackLayout>
+                        <Grid x:Name="tblWebsLocked" Margin="40,10,40,10" HorizontalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="10,10,10,10">
+                    <Label HorizontalOptions="Start" Text="Aplicaciones Bloqueadas" TextColor="#2C82FF"
+                            FontAttributes="Bold" FontSize="20" Margin="15,0,0,0"></Label>
+
+                    <Label BackgroundColor="#293868" HeightRequest="3" Margin="15,0,60,0"></Label>
+
+                    <StackLayout>
+                        <Grid x:Name="tblAppsLocked" Margin="40,10,40,10" HorizontalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="10,10,10,10">
+                    <Label HorizontalOptions="Start" Text="Uso del Dispositivo" TextColor="#2C82FF"
+                            FontAttributes="Bold" FontSize="20" Margin="15,0,0,0"></Label>
+
+                    <Label BackgroundColor="#293868" HeightRequest="3" Margin="15,0,60,0"></Label>
+
+                    <StackLayout>
+                        <Grid x:Name="tblDeviceUse" Margin="40,10,40,10" HorizontalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout Padding="10,10,10,10" BackgroundColor="#858585" VerticalOptions="EndAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -10,9 +10,7 @@ namespace ParentalControl.App.Mobile
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new MainPage();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new InfantPrincipalPage());
         }
 
         protected override void OnStart()

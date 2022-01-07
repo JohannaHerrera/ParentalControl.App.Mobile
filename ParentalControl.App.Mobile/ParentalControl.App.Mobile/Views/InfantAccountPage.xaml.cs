@@ -149,11 +149,6 @@ namespace ParentalControl.App.Mobile.Views
             }
         }
 
-        private void OnRulesImageButtonClicked(int infantId)
-        {
-            Navigation.PushAsync(new InfantRulesPage(infantId));
-        }
-
         private void Home_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new HomePage());

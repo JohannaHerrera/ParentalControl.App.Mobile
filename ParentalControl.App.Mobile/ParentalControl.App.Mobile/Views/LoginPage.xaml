@@ -4,27 +4,33 @@
              x:Class="ParentalControl.App.Mobile.Views.LoginPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-            <Label HorizontalOptions="Center" Text="Control Parental" TextColor="#13B57E"
+        <StackLayout>
+            <StackLayout Padding="40,60,40,20" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <Label HorizontalOptions="Center" Text="Control Parental" TextColor="#13B57E"
                    FontAttributes="Bold" FontSize="35"></Label>
-            <Label HorizontalOptions="Center" Text="Bienvenido" TextColor="#0d6efd"
+                <Label HorizontalOptions="Center" Text="Bienvenido" TextColor="#0d6efd"
                    FontAttributes="Bold" FontSize="25" Padding="0,0,0,20"></Label>
-            <Image Source="controlParentalLogo.png" WidthRequest="160" HeightRequest="160"></Image>
-            <Entry x:Name="txtEmail" Placeholder="Correo" TextColor="Black" PlaceholderColor="Gray"></Entry>
-            <Entry x:Name="txtPassword" Placeholder="Contraseña" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"></Entry>
-            <Button VerticalOptions="Center" Text="Iniciar Sesión" TextColor="White" BackgroundColor="#13B57E"
+                <Image Source="controlParentalLogo.png" WidthRequest="160" HeightRequest="160"></Image>
+                <Entry x:Name="txtEmail" Placeholder="Correo" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                <Entry x:Name="txtPassword" Placeholder="Contraseña" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                <Button VerticalOptions="Center" Text="Iniciar Sesión" TextColor="White" BackgroundColor="#13B57E"
                     CornerRadius="30" Margin="50,30,50,25" Clicked="Login_Clicked"></Button>
-            <Label HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="¿Aún no tienes una cuenta? " TextColor="Black"></Span>
-                        <Span Text="Registrarse" TextColor="#0d6efd" FontAttributes="Bold" TextDecorations="Underline"></Span>
-                    </FormattedString>
-                </Label.FormattedText>
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureLogin_Tapped"/>
-                </Label.GestureRecognizers>
-            </Label>
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="¿Aún no tienes una cuenta? " TextColor="Black"></Span>
+                            <Span Text="Registrarse" TextColor="#0d6efd" FontAttributes="Bold" TextDecorations="Underline"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureLogin_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <StackLayout HeightRequest="30">
+                <ImageButton Source="flecha_izquierda.png" Clicked="BackInfant_Clicked" Margin="20,0,0,0" 
+                         BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="Start"></ImageButton>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

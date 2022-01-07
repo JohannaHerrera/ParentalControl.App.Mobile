@@ -35,7 +35,7 @@ namespace ParentalControl.App.Mobile.Services
             }
         }
 
-        public async Task<AppRulesResponseModel> GetAppRules(string infantAccountId)
+        public async Task<AppRulesResponseModel> GetAppRules(GetAppConfigurationModel getAppConfigurationModel)
         {
             HttpClient client = new HttpClient();
             Constants constants = new Constants();
@@ -43,8 +43,10 @@ namespace ParentalControl.App.Mobile.Services
             client.BaseAddress = new Uri(constants.Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            string uri = $"{client.BaseAddress}api/AppRules?infantAccountId={infantAccountId}";
-            HttpResponseMessage response = await client.GetAsync(uri);
+            var body = JsonConvert.SerializeObject(getAppConfigurationModel);
+            var content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync("api/AppRules", content);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
