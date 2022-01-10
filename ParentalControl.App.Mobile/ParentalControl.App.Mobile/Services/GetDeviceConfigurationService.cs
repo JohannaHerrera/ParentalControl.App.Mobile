@@ -36,5 +36,30 @@ namespace ParentalControl.App.Mobile.Services
                 return null;
             }
         }
+
+        public async Task<SendRequestResponseModel> SendRequest(SendRequestModel sendRequestModel)
+        {
+            HttpClient client = new HttpClient();
+            Constants constants = new Constants();
+
+            client.BaseAddress = new Uri(constants.Uri);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var body = JsonConvert.SerializeObject(sendRequestModel);
+            var content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PutAsync("api/GetDeviceConfiguration", content);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var deserialize = await response.Content.ReadAsStringAsync();
+                var responseContent = JsonConvert.DeserializeObject<SendRequestResponseModel>(deserialize);
+                return responseContent;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

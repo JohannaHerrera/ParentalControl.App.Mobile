@@ -2,8 +2,11 @@
 using Android.App.Usage;
 using Android.Content;
 using Android.Content.PM;
+using Android.Content.Res;
+using Android.Widget;
 using Java.IO;
 using Java.Util;
+using ParentalControl.App.Mobile.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,37 +47,46 @@ namespace ParentalControl.App.Mobile.Services
                         var stats = m.QueryUsageStats(usageStatsInterval, 100, 100);
 
                         string nombre = string.Empty;
+                        string pkgName = string.Empty;
 
                         foreach (var app in apps)
                         {
                             string name = app.LoadLabel(Android.App.Application.Context.PackageManager);
 
-                            if (name.ToLower().Contains("youtube"))
+                            if (name.ToLower().Contains("brow"))
                             {
                                 //Intent startMain = new Intent(Intent.ActionMain);
                                 //startMain.AddCategory(Intent.CategoryHome);
                                 //startMain.SetFlags(ActivityFlags.NewTask);
                                 //Android.App.Application.Context.StartActivity(startMain);
 
+                                //Java.Lang.Process process = Java.Lang.Runtime.GetRuntime()?.Exec($"adb shell -> ps -A | grep {app.PackageName}");
+                                //var result = process?.WaitFor();
+                                //bool result = m.IsAppInactive(app.PackageName);
+                                //amg.RestartPackage(app.PackageName);
+
                                 nombre = app.ProcessName.ToLower();                                
 
                                 amg.KillBackgroundProcesses(app.PackageName);
-                                //amg.RestartPackage(app.PackageName);
-
-                                //Java.Lang.Process process = Java.Lang.Runtime.GetRuntime()?.Exec($"adb shell -> ps -A | grep {app.PackageName}");
-                                //var result = process?.WaitFor();
-
-                                bool result = m.IsAppInactive(app.PackageName);
-
                                 Android.OS.Process.KillProcess(app.Uid);
                             }
+                            if (name.ToLower().Contains("control"))
+                            {
+                                pkgName = app.PackageName;
+                            }
+                            
                         }
 
                         foreach (var app in amg.RunningAppProcesses)
                         {
-                            if (app.ProcessName.ToLower().Contains("contacts"))
+                            if (app.ProcessName.ToLower().Contains("brow"))
                             {
                                 Android.OS.Process.KillProcess(app.Pid);
+
+                                PackageManager pm = Android.App.Application.Context.PackageManager;
+                                Intent intent = pm.GetLaunchIntentForPackage(pkgName);
+                                intent.SetFlags(ActivityFlags.NewTask);
+                                Android.App.Application.Context.StartActivity(intent);                                                              
                             }
                         }
                     }
