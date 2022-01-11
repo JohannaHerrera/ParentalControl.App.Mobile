@@ -33,7 +33,6 @@ namespace ParentalControl.App.Mobile.Views
             {
                 if (!response.HaveRules)
                 {
-                    _ = DisplayAlert("Aviso", "El Dispositivo aún no tiene configurada ninguna regla.", "OK");
                     _ = Navigation.PushAsync(new LoginPage());
                 }
                 else

@@ -29,40 +29,52 @@ namespace ParentalControl.App.Mobile.Views
             GetScheduleInfoModel getScheduleInfoModel = new GetScheduleInfoModel();
             getScheduleInfoModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
             var response = await new ScheduleService().ScheduleIndex(getScheduleInfoModel);
-            if (response.Count() > 0)
+            
+            if(response != null)
             {
-                int rowCount = 0;
-                foreach (var item in response)
+                if (response.Count() > 0)
                 {
-                    if (!string.IsNullOrEmpty(item.MessageError))
+                    int rowCount = 0;
+                    foreach (var item in response)
                     {
-
-                        _ = DisplayAlert("Error", item.MessageError, "OK");
-                    }
-                    else
-                    {
-                        ListSchedule.RowDefinitions.Add(new RowDefinition { Height = 40 });
-                        ListSchedule.Children.Add(new Label {Text = item.ScheduleStartTime, 
-                                                FontSize = 18, VerticalOptions = LayoutOptions.CenterAndExpand,
-                                                Margin = new Thickness(0, 0, 0, 8) },0, rowCount);
-                        ListSchedule.Children.Add(new Label{Text = item.ScheduleEndTime,FontSize = 18,
-                                                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                                                    Margin = new Thickness(0, 0, 0, 8)}, 1, rowCount);
-
-                        ImageButton buttonEdit;                       
-                        ListSchedule.Children.Add(buttonEdit = new ImageButton
+                        if (!string.IsNullOrEmpty(item.MessageError))
                         {
-                            Source = "edit.png",
-                            BackgroundColor = Color.Transparent,
-                            VerticalOptions = LayoutOptions.Center
-                        }, 2, rowCount);
-                        ImageButton buttonDelete;
-                        ListSchedule.Children.Add(buttonDelete = new ImageButton { VerticalOptions = LayoutOptions.CenterAndExpand, Source = "borrar.png", BackgroundColor = Color.Transparent }, 3, rowCount);
-                        rowCount++;
-                        buttonEdit.Command = new Command((infantId) => EditSchedule_Clicked(item.ScheduleId));
-                        buttonDelete.Command = new Command((infantId) => DeleteSchedule_Clicked(item.ScheduleId));
+
+                            _ = DisplayAlert("Error", item.MessageError, "OK");
+                        }
+                        else
+                        {
+                            ListSchedule.RowDefinitions.Add(new RowDefinition { Height = 40 });
+                            ListSchedule.Children.Add(new Label
+                            {
+                                Text = item.ScheduleStartTime,
+                                FontSize = 18,
+                                VerticalOptions = LayoutOptions.CenterAndExpand,
+                                Margin = new Thickness(0, 0, 0, 8)
+                            }, 0, rowCount);
+                            ListSchedule.Children.Add(new Label
+                            {
+                                Text = item.ScheduleEndTime,
+                                FontSize = 18,
+                                VerticalOptions = LayoutOptions.CenterAndExpand,
+                                Margin = new Thickness(0, 0, 0, 8)
+                            }, 1, rowCount);
+
+                            ImageButton buttonEdit;
+                            ListSchedule.Children.Add(buttonEdit = new ImageButton
+                            {
+                                Source = "edit.png",
+                                BackgroundColor = Color.Transparent,
+                                VerticalOptions = LayoutOptions.Center
+                            }, 2, rowCount);
+                            ImageButton buttonDelete;
+                            ListSchedule.Children.Add(buttonDelete = new ImageButton { VerticalOptions = LayoutOptions.CenterAndExpand, Source = "borrar.png", BackgroundColor = Color.Transparent }, 3, rowCount);
+                            rowCount++;
+                            buttonEdit.Command = new Command((infantId) => EditSchedule_Clicked(item.ScheduleId));
+                            buttonDelete.Command = new Command((infantId) => DeleteSchedule_Clicked(item.ScheduleId));
+                        }
                     }
-                }
+                } 
             }
             else
             {
