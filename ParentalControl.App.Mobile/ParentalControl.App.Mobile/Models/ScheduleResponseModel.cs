@@ -4,7 +4,7 @@ using System.Text;
 using Newtonsoft.Json;
 namespace ParentalControl.App.Mobile.Models
 {
-    class ScheduleResponseModel
+    public class ScheduleResponseModel
     {
         [JsonProperty("ScheduleId")]
         public int ScheduleId { get; set; }

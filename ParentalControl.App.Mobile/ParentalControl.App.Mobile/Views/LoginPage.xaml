@@ -24,7 +24,12 @@
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureLogin_Tapped"/>
                 </Label.GestureRecognizers>
+
             </Label>
+            <Grid x:Name="appBrowser">
+                <Button x:Name="btnBrowser"
+                        Clicked="btnBrowser_Clicked"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
