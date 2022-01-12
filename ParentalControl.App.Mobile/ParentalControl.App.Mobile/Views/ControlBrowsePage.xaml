@@ -11,7 +11,8 @@
                  Navigated="pageView_Navigated" ></WebView>
         <StackLayout>
             <Button x:Name="Back" 
-                    Text="Página anterior" 
+                    Text="Página anterior"
+                    CornerRadius="20"
                     Margin="10,5,0,0" 
                     HorizontalOptions="StartAndExpand"
                     HeightRequest="40"

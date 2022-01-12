@@ -42,7 +42,7 @@ namespace ParentalControl.App.Mobile.Views
                 {                 
                     e.Cancel = true;
                     _ = DisplayAlert("Error", response.MessageError, "OK");
-                    _ = Navigation.PushAsync(new LoginPage());
+                    _ = Navigation.PushAsync(new InfantPrincipalPage());
                     //DisplayAlert("Alert", response.MessageError, "Ok");
                 }
                 else
