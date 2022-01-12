@@ -35,7 +35,7 @@ namespace ParentalControl.App.Mobile.Droid.Services
                 try
                 {
                     var appRules = new ApplyInfantRulesService();
-                    appRules.BlockApps().Wait();
+                    appRules.ApplyRules().Wait();
                 }
                 catch (Exception ex)
                 {
