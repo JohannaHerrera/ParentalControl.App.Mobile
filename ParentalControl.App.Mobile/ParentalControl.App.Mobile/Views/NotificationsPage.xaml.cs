@@ -36,204 +36,210 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
-                    // Guardo la información de las notificaciones
-                    stateNotifications = response.requestModelList;
-
-                    int rowCount = 0;
-
-                    // Table Notifications
-                    foreach (var request in response.requestModelList)
+                    if (response.requestModelList != null && response.requestModelList.Count() > 0)
                     {
-                        tblNotifications.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                        // Guardo la información de las notificaciones
+                        stateNotifications = response.requestModelList;
 
-                        Grid gridInfant = new Grid
+                        int rowCount = 0;
+
+                        // Table Notifications
+                        foreach (var request in response.requestModelList)
                         {
-                            RowDefinitions =
+                            tblNotifications.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+                            Grid gridInfant = new Grid
+                            {
+                                RowDefinitions =
                             {
                                 new RowDefinition { Height = new GridLength(50) },
                                 new RowDefinition { Height = new GridLength(25) },
                             },
-                            ColumnDefinitions =
+                                ColumnDefinitions =
                             {
                                 new ColumnDefinition(),
                             },
-                            VerticalOptions = LayoutOptions.Center,
-                        };
-
-                        // Infant Image
-                        if (request.InfantGender == "Femenino")
-                        {
-                            gridInfant.Children.Add(new Image
-                            {
-                                VerticalOptions = LayoutOptions.EndAndExpand,
-                                HorizontalOptions = LayoutOptions.Center,
-                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/nina_64.png"
-                            }, 0, 0);
-                        }
-                        else
-                        {
-                            gridInfant.Children.Add(new Image
-                            {
-                                VerticalOptions = LayoutOptions.EndAndExpand,
-                                HorizontalOptions = LayoutOptions.Center,
-                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/hijo_64.png"
-                            }, 0, 0);
-                        }
-
-                        // InfantName
-                        gridInfant.Children.Add(new Label
-                        {
-                            Text = request.InfantName,
-                            FontSize = 18,
-                            VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.Center,
-                            FontAttributes = FontAttributes.Bold,
-                        }, 0, 1);
-
-                        tblNotifications.Children.Add(gridInfant, 0, rowCount);
-
-                        // Request Description
-                        tblNotifications.Children.Add(new Label
-                        {
-                            Text = request.RequestDescription,
-                            FontSize = 16,
-                            VerticalOptions = LayoutOptions.CenterAndExpand,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        }, 1, rowCount);
-
-                        // Request Buttons
-                        if(request.RequestState == 0)
-                        {
-                            Grid grid = new Grid
-                            {
-                                RowDefinitions =
-                                {
-                                    new RowDefinition { Height = new GridLength(50) },
-                                    new RowDefinition { Height = new GridLength(50) },
-                                },
-                                ColumnDefinitions =
-                                {
-                                    new ColumnDefinition(),
-                                },
                                 VerticalOptions = LayoutOptions.Center,
                             };
 
-                            grid.Children.Add(new Button
+                            // Infant Image
+                            if (request.InfantGender == "Femenino")
                             {
-                                Text = "Aprobar",
-                                TextColor = Color.White,
-                                BackgroundColor = Color.Green,
-                                CornerRadius = 20,
-                                HeightRequest = 50,
-                                VerticalOptions = LayoutOptions.Center,
-                                Command = new Command((requestId) => Approve(request.RequestId)),
-                            }, 0, 0);
+                                gridInfant.Children.Add(new Image
+                                {
+                                    VerticalOptions = LayoutOptions.EndAndExpand,
+                                    HorizontalOptions = LayoutOptions.Center,
+                                    Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/nina_64.png"
+                                }, 0, 0);
+                            }
+                            else
+                            {
+                                gridInfant.Children.Add(new Image
+                                {
+                                    VerticalOptions = LayoutOptions.EndAndExpand,
+                                    HorizontalOptions = LayoutOptions.Center,
+                                    Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/hijo_64.png"
+                                }, 0, 0);
+                            }
 
-                            grid.Children.Add(new Button
+                            // InfantName
+                            gridInfant.Children.Add(new Label
                             {
-                                Text = "Desaprobar",
-                                TextColor = Color.White,
-                                BackgroundColor = Color.Red,
-                                CornerRadius = 20,
-                                HeightRequest = 50,
+                                Text = request.InfantName,
+                                FontSize = 18,
                                 VerticalOptions = LayoutOptions.Center,
-                                Command = new Command((requestId) => Disapprove(request.RequestId)),
+                                HorizontalOptions = LayoutOptions.Center,
+                                FontAttributes = FontAttributes.Bold,
                             }, 0, 1);
 
-                            tblNotifications.Children.Add(grid, 2, rowCount);
-                        }
-                        else if(request.RequestState == 1)
-                        {
-                            Grid grid = new Grid
+                            tblNotifications.Children.Add(gridInfant, 0, rowCount);
+
+                            // Request Description
+                            tblNotifications.Children.Add(new Label
                             {
-                                RowDefinitions =
+                                Text = request.RequestDescription,
+                                FontSize = 16,
+                                VerticalOptions = LayoutOptions.CenterAndExpand,
+                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            }, 1, rowCount);
+
+                            // Request Buttons
+                            if (request.RequestState == 0)
+                            {
+                                Grid grid = new Grid
+                                {
+                                    RowDefinitions =
                                 {
                                     new RowDefinition { Height = new GridLength(50) },
+                                    new RowDefinition { Height = new GridLength(50) },
                                 },
-                                ColumnDefinitions =
+                                    ColumnDefinitions =
                                 {
                                     new ColumnDefinition(),
                                 },
-                                VerticalOptions = LayoutOptions.Center,
-                            };
+                                    VerticalOptions = LayoutOptions.Center,
+                                };
 
-                            grid.Children.Add(new Button
-                            {
-                                Text = "Aprobado",
-                                TextColor = Color.White,
-                                BackgroundColor = Color.Gray,
-                                CornerRadius = 20,
-                                HeightRequest = 50,
-                                VerticalOptions = LayoutOptions.Center,
-                            }, 0, 0);
+                                grid.Children.Add(new Button
+                                {
+                                    Text = "Aprobar",
+                                    TextColor = Color.White,
+                                    BackgroundColor = Color.Green,
+                                    CornerRadius = 20,
+                                    HeightRequest = 50,
+                                    VerticalOptions = LayoutOptions.Center,
+                                    Command = new Command((requestId) => Approve(request.RequestId)),
+                                }, 0, 0);
 
-                            tblNotifications.Children.Add(grid, 2, rowCount);
-                        }
-                        else if (request.RequestState == 2)
-                        {
-                            Grid grid = new Grid
+                                grid.Children.Add(new Button
+                                {
+                                    Text = "Desaprobar",
+                                    TextColor = Color.White,
+                                    BackgroundColor = Color.Red,
+                                    CornerRadius = 20,
+                                    HeightRequest = 50,
+                                    VerticalOptions = LayoutOptions.Center,
+                                    Command = new Command((requestId) => Disapprove(request.RequestId)),
+                                }, 0, 1);
+
+                                tblNotifications.Children.Add(grid, 2, rowCount);
+                            }
+                            else if (request.RequestState == 1)
                             {
-                                RowDefinitions =
+                                Grid grid = new Grid
+                                {
+                                    RowDefinitions =
                                 {
                                     new RowDefinition { Height = new GridLength(50) },
                                 },
-                                ColumnDefinitions =
+                                    ColumnDefinitions =
                                 {
                                     new ColumnDefinition(),
                                 },
-                                VerticalOptions = LayoutOptions.Center,
-                            };
+                                    VerticalOptions = LayoutOptions.Center,
+                                };
 
-                            grid.Children.Add(new Button
-                            {
-                                Text = "Desaprobado",
-                                TextColor = Color.White,
-                                BackgroundColor = Color.Gray,
-                                CornerRadius = 20,
-                                HeightRequest = 50,
-                                VerticalOptions = LayoutOptions.Center,
-                            }, 0, 0);
+                                grid.Children.Add(new Button
+                                {
+                                    Text = "Aprobado",
+                                    TextColor = Color.White,
+                                    BackgroundColor = Color.Gray,
+                                    CornerRadius = 20,
+                                    HeightRequest = 50,
+                                    VerticalOptions = LayoutOptions.Center,
+                                }, 0, 0);
 
-                            tblNotifications.Children.Add(grid, 2, rowCount);
-                        }
-                        else if (request.RequestState == 3)
-                        {
-                            Grid grid = new Grid
+                                tblNotifications.Children.Add(grid, 2, rowCount);
+                            }
+                            else if (request.RequestState == 2)
                             {
-                                RowDefinitions =
+                                Grid grid = new Grid
+                                {
+                                    RowDefinitions =
+                                {
+                                    new RowDefinition { Height = new GridLength(50) },
+                                },
+                                    ColumnDefinitions =
+                                {
+                                    new ColumnDefinition(),
+                                },
+                                    VerticalOptions = LayoutOptions.Center,
+                                };
+
+                                grid.Children.Add(new Button
+                                {
+                                    Text = "Desaprobado",
+                                    TextColor = Color.White,
+                                    BackgroundColor = Color.Gray,
+                                    CornerRadius = 20,
+                                    HeightRequest = 50,
+                                    VerticalOptions = LayoutOptions.Center,
+                                }, 0, 0);
+
+                                tblNotifications.Children.Add(grid, 2, rowCount);
+                            }
+                            else if (request.RequestState == 3)
+                            {
+                                Grid grid = new Grid
+                                {
+                                    RowDefinitions =
                                 {
                                     new RowDefinition { Height = new GridLength(60) },
                                 },
-                                ColumnDefinitions =
+                                    ColumnDefinitions =
                                 {
                                     new ColumnDefinition(),
                                 },
-                                VerticalOptions = LayoutOptions.Center,
-                            };
+                                    VerticalOptions = LayoutOptions.Center,
+                                };
 
-                            grid.Children.Add(new Button
-                            {
-                                Text = "Sin Respuesta",
-                                TextColor = Color.White,
-                                BackgroundColor = Color.Orange,
-                                CornerRadius = 20,
-                                HeightRequest = 60,
-                                VerticalOptions = LayoutOptions.Center,
-                            }, 0, 0);
+                                grid.Children.Add(new Button
+                                {
+                                    Text = "Sin Respuesta",
+                                    TextColor = Color.White,
+                                    BackgroundColor = Color.Orange,
+                                    CornerRadius = 20,
+                                    HeightRequest = 60,
+                                    VerticalOptions = LayoutOptions.Center,
+                                }, 0, 0);
 
-                            tblNotifications.Children.Add(grid, 2, rowCount);
+                                tblNotifications.Children.Add(grid, 2, rowCount);
+                            }
+
+                            rowCount++;
+
+                            tblNotifications.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                            tblNotifications.Children.Add(new Label { HeightRequest = 1, BackgroundColor = Color.FromHex("#2D60B3") }, 0, rowCount);
+                            tblNotifications.Children.Add(new Label { HeightRequest = 1, BackgroundColor = Color.FromHex("#2D60B3") }, 1, rowCount);
+                            tblNotifications.Children.Add(new Label { HeightRequest = 1, BackgroundColor = Color.FromHex("#2D60B3") }, 2, rowCount);
+
+                            rowCount++;
                         }
-
-                        rowCount++;
-
-                        tblNotifications.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                        tblNotifications.Children.Add(new Label { HeightRequest = 1, BackgroundColor = Color.FromHex("#2D60B3") }, 0, rowCount);
-                        tblNotifications.Children.Add(new Label { HeightRequest = 1, BackgroundColor = Color.FromHex("#2D60B3") }, 1, rowCount);
-                        tblNotifications.Children.Add(new Label { HeightRequest = 1, BackgroundColor = Color.FromHex("#2D60B3") }, 2, rowCount);
-
-                        rowCount++;
                     }
-
+                    else
+                    {
+                        _ = DisplayAlert("Aviso", "Aún no tienes notificaciones por revisar.", "OK");
+                    }
                 }
             }
             else

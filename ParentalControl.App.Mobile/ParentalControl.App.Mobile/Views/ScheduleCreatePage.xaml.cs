@@ -66,6 +66,12 @@ namespace ParentalControl.App.Mobile.Views
                 }
             }
         }
+
+        private void Back_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new SchedulePage());
+        }
+
         private void Home_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new HomePage());
@@ -88,18 +94,19 @@ namespace ParentalControl.App.Mobile.Views
 
         private void Notifications_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new NotificationsPage());
         }
 
         private void MyAccount_Clicked(object sender, EventArgs a)
         {
-
+            Navigation.PushAsync(new MyProfilePage());
         }
 
         private void Logout_Clicked(object sender, EventArgs a)
         {
-
+            Xamarin.Essentials.Preferences.Clear();
+            _ = DisplayAlert("Aviso", "Cerrando sesión...", "OK");
+            _ = Navigation.PushAsync(new LoginPage());
         }
-
     }   
 }

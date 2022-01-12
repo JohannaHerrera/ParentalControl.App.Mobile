@@ -12,9 +12,13 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Crear cuenta infantil" TextColor="White" Margin="20,0,20,0"
+                        <ImageButton Grid.Column="0" Source="flecha_izquierda.png" WidthRequest="20" 
+                                     HeightRequest="20" Clicked="Back_Clicked" Margin="10,0,0,0"
+                                     BackgroundColor="Transparent"></ImageButton>
+                        <Label Grid.Column="1" Text="Crear cuenta infantil" TextColor="White" Margin="10,0,0,0"
                                 FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
                     </Grid>
                 </StackLayout>

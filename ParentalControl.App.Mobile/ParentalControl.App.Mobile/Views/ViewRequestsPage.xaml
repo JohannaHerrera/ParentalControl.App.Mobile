@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentalControl.App.Mobile.Views.ViewRequestsPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <StackLayout>
+        <ScrollView>
+            <StackLayout  VerticalOptions="StartAndExpand">
+                <StackLayout BackgroundColor="#2D60B3" Padding="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="0" Source="flecha_izquierda.png" WidthRequest="20" 
+                                     HeightRequest="20" Clicked="Back_Clicked" Margin="10,0,0,0"
+                                     BackgroundColor="Transparent"></ImageButton>
+                        <Label Grid.Column="1" Text="Notificaciones" TextColor="White" Margin="10,0,10,0"
+                                FontAttributes="Bold" FontSize="25" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Margin="10,10,10,10">
+                    <StackLayout>
+                        <Grid x:Name="tblNotifications" Margin="20,10,20,10" HorizontalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

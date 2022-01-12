@@ -99,6 +99,11 @@ namespace ParentalControl.App.Mobile.Views
 
         }
 
+        private void Back_Clicked(object sender, EventArgs a)
+        {
+            Navigation.PushAsync(new InfantAccountPage());
+        }
+
         private void Home_Clicked(object sender, EventArgs a)
         {
             Navigation.PushAsync(new HomePage());

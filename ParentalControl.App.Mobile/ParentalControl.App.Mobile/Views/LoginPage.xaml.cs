@@ -1,5 +1,6 @@
 ﻿using Android.Content.PM;
 using Newtonsoft.Json;
+using ParentalControl.App.Mobile.Interfaces;
 using ParentalControl.App.Mobile.Models;
 using ParentalControl.App.Mobile.Services;
 using Plugin.DeviceInfo;
@@ -76,6 +77,11 @@ namespace ParentalControl.App.Mobile.Views
                                 Preferences.Set("ParentEmail", response.ParentEmail);
 
                                 _ = Navigation.PushAsync(new HomePage());
+
+                                if (response.IsFirstTime)
+                                {
+                                    DependencyService.Get<IAndroidService>().StartService();
+                                }
                             }
                         }
                     }
@@ -96,11 +102,9 @@ namespace ParentalControl.App.Mobile.Views
             Navigation.PushAsync(new RegisterPage());
         }
 
-        private void btnBrowser_Clicked(object sender, EventArgs e)
+        private void BackInfant_Clicked(object sender, EventArgs a)
         {
-            
-            Navigation.PushAsync(new ControlBrowsePage());
-            //Navigation.PushAsync(new BrowserPage());
+            Navigation.PushAsync(new InfantPrincipalPage());
         }
-    }
+}
 }

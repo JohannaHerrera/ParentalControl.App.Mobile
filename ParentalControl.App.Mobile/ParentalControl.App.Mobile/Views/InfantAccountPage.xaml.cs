@@ -32,68 +32,69 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
-                    int rowCount = 0;
-
-                    // Table InfantAccount
-                    foreach (var use in response.InfantAccountModelList)
+                    if (response.InfantAccountModelList != null)
                     {
-                        tblInfantAccount.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                        if (use.InfantGender == "Masculino")
+                        int rowCount = 0;
+                        // Table InfantAccount
+                        foreach (var use in response.InfantAccountModelList)
                         {
-                            tblInfantAccount.Children.Add(new Image
+                            tblInfantAccount.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                            if (use.InfantGender == "Masculino")
+                            {
+                                tblInfantAccount.Children.Add(new Image
+                                {
+                                    VerticalOptions = LayoutOptions.Center,
+                                    Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/hijo_64.png"
+                                }, 0, rowCount);
+                            }
+                            else
+                            {
+                                tblInfantAccount.Children.Add(new Image
+                                {
+                                    VerticalOptions = LayoutOptions.Center,
+                                    Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/nina_64.png"
+                                }, 0, rowCount);
+                            }
+
+                            tblInfantAccount.Children.Add(new Label
+                            {
+                                Text = use.InfantName,
+                                FontSize = 18,
+                                VerticalOptions = LayoutOptions.Center,
+                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                FontAttributes = FontAttributes.Bold
+                            }, 1, rowCount);
+
+                            ImageButton editButton;
+                            tblInfantAccount.Children.Add(editButton = new ImageButton
                             {
                                 VerticalOptions = LayoutOptions.Center,
-                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/hijo_64.png"
-                            }, 0, rowCount);
-                        }
-                        else
-                        {
-                            tblInfantAccount.Children.Add(new Image
+                                BackgroundColor = Color.Transparent,
+                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/edit.png"
+                            }, 2, rowCount);
+                            editButton.Command = new Command((infantId) => OnEditImageButtonClicked(use.InfantAccountId));
+
+                            ImageButton deleteButton;
+                            tblInfantAccount.Children.Add(deleteButton = new ImageButton
                             {
                                 VerticalOptions = LayoutOptions.Center,
-                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/nina_64.png"
-                            }, 0, rowCount);
+                                BackgroundColor = Color.Transparent,
+                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/eliminar_32.png"
+                            }, 3, rowCount);
+                            deleteButton.Command = new Command((infantId) => OnDeleteImageButtonClicked(use.InfantAccountId));
+
+
+                            ImageButton rulesButton;
+                            tblInfantAccount.Children.Add(rulesButton = new ImageButton
+                            {
+                                VerticalOptions = LayoutOptions.Center,
+                                BackgroundColor = Color.Transparent,
+                                Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/flecha_correcta.png"
+                            }, 4, rowCount);
+                            rulesButton.Command = new Command((infantId) => OnRulesImageButtonClicked(use.InfantAccountId));
+                            rowCount++;
                         }
-
-                        tblInfantAccount.Children.Add( new Label
-                        {
-                            Text = use.InfantName,
-                            FontSize = 18,
-                            VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.CenterAndExpand,
-                            FontAttributes = FontAttributes.Bold
-                        }, 1, rowCount);
-
-                        ImageButton editButton;
-                        tblInfantAccount.Children.Add(editButton = new ImageButton
-                        {
-                            VerticalOptions = LayoutOptions.Center,
-                            BackgroundColor = Color.Transparent,
-                            Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/edit.png"
-                        }, 2, rowCount);
-                        editButton.Command = new Command((infantId) => OnEditImageButtonClicked(use.InfantAccountId));
-
-                        ImageButton deleteButton;
-                        tblInfantAccount.Children.Add(deleteButton = new ImageButton
-                        {
-                            VerticalOptions = LayoutOptions.Center,
-                            BackgroundColor = Color.Transparent,
-                            Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/eliminar_32.png"
-                        }, 3, rowCount);
-                        deleteButton.Command = new Command((infantId) => OnDeleteImageButtonClicked(use.InfantAccountId));
-
-
-                        ImageButton rulesButton;
-                        tblInfantAccount.Children.Add(rulesButton = new ImageButton
-                        {
-                            VerticalOptions = LayoutOptions.Center,
-                            BackgroundColor = Color.Transparent,
-                            Source = "../ParentalControl.App.Mobile.Android/Resources/drawable/flecha_correcta.png"
-                        }, 4, rowCount);
-                        rulesButton.Command = new Command((infantId) => OnRulesImageButtonClicked(use.InfantAccountId));
-                        rowCount++;
                     }
-
                 }
             }
             else
@@ -147,11 +148,6 @@ namespace ParentalControl.App.Mobile.Views
                 _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
                 _ = Navigation.PushAsync(new HomePage());
             }
-        }
-
-        private void OnRulesImageButtonClicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new HomePage());
         }
 
         private void Home_Clicked(object sender, EventArgs a)
