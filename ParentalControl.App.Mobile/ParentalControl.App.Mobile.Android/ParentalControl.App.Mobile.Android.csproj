@@ -58,6 +58,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.LocalNotification">
+      <Version>9.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Expander">
       <Version>19.4.0.40</Version>
     </PackageReference>
