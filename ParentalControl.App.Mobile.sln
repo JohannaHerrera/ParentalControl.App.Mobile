@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentalControl.App.Mobile.Android", "ParentalControl.App.Mobile\ParentalControl.App.Mobile.Android\ParentalControl.App.Mobile.Android.csproj", "{2A793BE6-4AAF-4E15-8F3A-FA7DDC85FAE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentalControl.App.Mobile", "ParentalControl.App.Mobile\ParentalControl.App.Mobile\ParentalControl.App.Mobile.csproj", "{A02A87A8-08F2-494B-9393-0219C7625EE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentalControl.App.Mobile", "ParentalControl.App.Mobile\ParentalControl.App.Mobile\ParentalControl.App.Mobile.csproj", "{A02A87A8-08F2-494B-9393-0219C7625EE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{52288650-1B95-47B1-8E43-DEC52AAAFD7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

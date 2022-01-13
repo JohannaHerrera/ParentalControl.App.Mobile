@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParentalControl.App.Mobile.Models
 {
-    class ScheduleUpdateModel
+    public class ScheduleUpdateModel
     {
         [JsonProperty("ScheduleId")]
         public int? ScheduleId { get; set; }
