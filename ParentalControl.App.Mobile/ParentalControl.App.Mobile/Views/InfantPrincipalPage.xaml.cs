@@ -163,5 +163,10 @@ namespace ParentalControl.App.Mobile.Views
         {
             Navigation.PushAsync(new LoginPage());
         }
+
+        private void browse_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ControlBrowsePage());
+        }
     }
 }
