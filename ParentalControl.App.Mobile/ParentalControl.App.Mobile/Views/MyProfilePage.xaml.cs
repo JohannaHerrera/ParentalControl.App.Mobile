@@ -61,22 +61,38 @@ namespace ParentalControl.App.Mobile.Views
             }
             else
             {
-                MyProfileModel myProfileModel = new MyProfileModel();
-                myProfileModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
-                myProfileModel.ParentUsername = txtUsername.Text;
-                myProfileModel.ParentEmail = txtEmail.Text;
-                myProfileModel.ParentPassword = txtPassword.Text;
-                var response = await new MyProfileService().UpdateMyProfile(myProfileModel);
-
-                if (response)
+                if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtEmail.Text) || 
+                    string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
-                    _ = Navigation.PushAsync(new MyProfilePage());
+                    _ = DisplayAlert("Aviso", "Complete todos los datos requeridos.", "OK");
                 }
                 else
                 {
-                    _ = DisplayAlert("Error", "Ocurrió un error inesperado.", "OK");
-                    _ = Navigation.PushAsync(new HomePage());
+                    if (txtEmail.Text.Contains("@") && txtEmail.Text.Contains("."))
+                    {
+                        MyProfileModel myProfileModel = new MyProfileModel();
+                        myProfileModel.ParentId = Convert.ToInt32(Preferences.Get("ParentId", "0"));
+                        myProfileModel.ParentUsername = txtUsername.Text;
+                        myProfileModel.ParentEmail = txtEmail.Text;
+                        myProfileModel.ParentPassword = txtPassword.Text;
+
+                        var response = await new MyProfileService().UpdateMyProfile(myProfileModel);
+
+                        if (response)
+                        {
+                            _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
+                            _ = Navigation.PushAsync(new MyProfilePage());
+                        }
+                        else
+                        {
+                            _ = DisplayAlert("Error", "Ocurrió un error inesperado.", "OK");
+                            _ = Navigation.PushAsync(new HomePage());
+                        }
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Aviso", "Ingrese una dirección de correo válida.", "OK");
+                    }
                 }
             }
             
