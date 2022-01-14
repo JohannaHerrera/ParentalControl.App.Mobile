@@ -84,19 +84,27 @@ namespace ParentalControl.App.Mobile.Views
             updateInfantAccountModel.InfantName = infantName.Text;
             updateInfantAccountModel.InfantGender = infantGender.SelectedItem.ToString();
 
-            var response = await new InfantAccountService().UpdateInfantAccount(updateInfantAccountModel);
-
-            if (response)
+            if (string.IsNullOrEmpty(infantName.Text))
             {
-                _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
-                _ = Navigation.PushAsync(new InfantAccountPage());
+                _ = DisplayAlert("Error", "Por favor el campo de nombre no debe estar vacío", "OK");
             }
             else
             {
-                _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
-                _ = Navigation.PushAsync(new HomePage());
-            }
+                var response = await new InfantAccountService().UpdateInfantAccount(updateInfantAccountModel);
 
+                if (response)
+                {
+                    _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
+                    _ = Navigation.PushAsync(new InfantAccountPage());
+                }
+                else
+                {
+                    _ = DisplayAlert("Error", "Ya existe un infante con el mismo nombre", "OK");
+                    _ = DisplayAlert("Error", "Ya existe un infante con el mismo nombre", "OK");
+                    _ = Navigation.PushAsync(new InfantAccountPage());
+                }
+            }
+            
         }
 
         private void Back_Clicked(object sender, EventArgs a)

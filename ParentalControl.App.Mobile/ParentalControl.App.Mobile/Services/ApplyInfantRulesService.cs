@@ -6,12 +6,15 @@ using Android.Content.Res;
 using Android.Widget;
 using Java.IO;
 using Java.Util;
+using ParentalControl.App.Mobile.Models;
 using ParentalControl.App.Mobile.Views;
+using Plugin.DeviceInfo;
 using Plugin.LocalNotification;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -39,7 +42,8 @@ namespace ParentalControl.App.Mobile.Services
                     {
                         await Task.Delay(5000);
 
-                        await BlockApps();
+                        //await BlockApps();
+                        DeviceUse();
 
                     }
                 }
@@ -138,6 +142,124 @@ namespace ParentalControl.App.Mobile.Services
 
                 return;
             });
+        }
+
+        public void DeviceUse()
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    string deviceCode = CrossDeviceInfo.Current.Id;
+                    var response = await new GetDeviceConfigurationService().GetDeviceConfiguration(deviceCode);
+                    DateTime dateValue = DateTime.Now;
+                    string dia = dateValue.ToString("dddd", new CultureInfo("es-ES"));
+
+                    if (response != null)
+                    {
+                        if(response.DeviceConfig != null)
+                        {
+                            if (response.DeviceConfig.Count > 0 )
+                            {
+                                foreach (var use in response.DeviceConfig)
+                                {
+
+                                    if (use.DevicePhoneUseDay.ToLower().Equals(dia.ToLower()))
+                                    {
+                                        ScheduleEditFindModel getScheduleInfoModel = new ScheduleEditFindModel();
+                                        getScheduleInfoModel.ScheduleId = use.ScheduleId;
+                                        var responseSchedule = await new ScheduleService().ScheduleFindEdit(getScheduleInfoModel);
+                                        var hola= responseSchedule.ScheduleStartTime;
+                                        if (ShowMessageScheduleWithSystemTime(responseSchedule, 10))
+                                        {
+                                            var notificationPrecaucion = new NotificationRequest
+                                            {
+                                                NotificationId = 100,
+                                                Title = "¡Atención!",
+                                                Description = $"En aproximadamente 10 minutos ya no podrá utilizar su dispositivo",
+                                                ReturningData = "Dummy data", // Returning data when tapped on notification.
+                                            };
+
+                                            await NotificationCenter.Current.Show(notificationPrecaucion);
+                                        }
+                                        else if (!CompareScheduleWithSystemTime(responseSchedule))
+                                        {
+                                            Intent startMain = new Intent(Intent.ActionMain);
+                                            startMain.AddCategory(Intent.CategoryHome);
+                                            startMain.SetFlags(ActivityFlags.NewTask);
+                                            Android.App.Application.Context.StartActivity(startMain);
+
+                                            var notification = new NotificationRequest
+                                            {
+                                                NotificationId = 100,
+                                                Title = "¡Atención!",
+                                                Description = $"No puedes utilizar el dispositivo en este momento",
+                                                ReturningData = "Dummy data", // Returning data when tapped on notification.
+                                            };
+
+                                            await NotificationCenter.Current.Show(notification);
+                                        }                                 
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+
+                return;
+            });
+        }
+
+        private bool ShowMessageScheduleWithSystemTime(ScheduleResponseModel responseSchedule, int horaMensaje)
+        {
+            string scheduleEndTime = responseSchedule.ScheduleEndTime;
+            DateTime horaFin = DateTime.ParseExact(scheduleEndTime, "HH:mm", null);
+
+            string horaActual = DateTime.Now.ToString("HH:mm");
+            DateTime.ParseExact(horaActual, "HH:mm", null);
+
+            DateTime ObtenerHora = horaFin.AddMinutes(-(horaMensaje));
+
+            string HoraAUtilizar = ObtenerHora.ToString("HH:mm");
+            string horaFinAux = horaFin.ToString("HH:mm");
+
+            DateTime.ParseExact(horaActual, "HH:mm", null);
+            DateTime.ParseExact(HoraAUtilizar, "HH:mm", null);
+            DateTime.ParseExact(horaFinAux, "HH:mm", null);
+
+            if (horaActual.CompareTo(HoraAUtilizar) >= 0 && horaActual.CompareTo(horaFinAux) <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool CompareScheduleWithSystemTime(ScheduleResponseModel responseSchedule)
+        {
+            string scheduleEndTime = responseSchedule.ScheduleEndTime;
+            string scheduleStartTime = responseSchedule.ScheduleStartTime;
+            DateTime horaFin = DateTime.ParseExact(scheduleEndTime, "HH:mm", null);
+            DateTime horaInicio = DateTime.ParseExact(scheduleStartTime, "HH:mm", null);
+
+            string horaFinAux = horaFin.ToString("HH:mm");
+            string horaInicioAux = horaInicio.ToString("HH:mm");
+            string horaActual = DateTime.Now.ToString("HH:mm");
+
+            DateTime.ParseExact(horaActual, "HH:mm", null);
+            DateTime.ParseExact(horaFinAux, "HH:mm", null);
+            DateTime.ParseExact(horaInicioAux, "HH:mm", null);
+
+            if (horaActual.CompareTo(horaInicioAux) >= 0 && horaActual.CompareTo(horaFinAux) <= 0)
+            {
+                return true;
+            }
+            return false;
         }
 
     }
