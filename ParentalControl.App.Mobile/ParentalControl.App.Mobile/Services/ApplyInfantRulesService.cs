@@ -43,7 +43,6 @@ namespace ParentalControl.App.Mobile.Services
                         await Task.Delay(5000);
 
                         BlockApps();
-                        //await BlockApps();
                         DeviceUse();
 
                     }
