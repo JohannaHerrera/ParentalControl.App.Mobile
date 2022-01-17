@@ -15,7 +15,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="320" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Horarios" TextColor="White" Margin="20,0,20,0"
+                        <Label Grid.Column="0" Text="Horarios De Uso" TextColor="White" Margin="20,0,20,0"
                                 FontAttributes="Bold" FontSize="25" VerticalOptions="Center"></Label>
                     </Grid>
                 </StackLayout>

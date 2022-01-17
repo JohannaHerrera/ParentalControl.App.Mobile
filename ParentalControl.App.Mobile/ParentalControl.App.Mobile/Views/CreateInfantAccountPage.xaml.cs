@@ -37,14 +37,10 @@ namespace ParentalControl.App.Mobile.Views
 
         private async void CreateInfantAccount_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(infantName.Text))
+            if (string.IsNullOrEmpty(infantName.Text) || infantGender.SelectedIndex == -1)
             {
-                _ = DisplayAlert("Error", "El nombre del infante no es válido.", "OK");
-            }
-            else if (infantGender.SelectedIndex == -1)
-            {
-                _ = DisplayAlert("Error", "Por Favor seleccione el género del infante.", "OK");
-            }
+                _ = DisplayAlert("Error", "Por favor complete todos los campos", "OK");
+            }           
             else
             {
                 CreateInfantAccountModel createInfantAccountModel = new CreateInfantAccountModel();
@@ -61,8 +57,8 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
-                    _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
-                    _ = Navigation.PushAsync(new HomePage());
+                    _ = DisplayAlert("Error", response.MessageError, "OK");
+                    _ = Navigation.PushAsync(new InfantAccountPage());
                 }
             }
 
