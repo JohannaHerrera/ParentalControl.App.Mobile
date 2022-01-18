@@ -10,7 +10,7 @@ namespace ParentalControl.App.Mobile
         {
             get
             {
-                return "http://192.168.1.10:45455/";
+                return "http://pruebajkn-001-site1.itempurl.com/";
             }
         }
     }
