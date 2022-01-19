@@ -83,9 +83,8 @@ namespace ParentalControl.App.Mobile.Views
                                 Text = use.ActivityDescription,
                                 FontSize = 18,
                                 TextColor = Color.Black,
-                                VerticalOptions = LayoutOptions.Center,
-                                HorizontalOptions = LayoutOptions.StartAndExpand,
-                                FontAttributes = FontAttributes.Bold
+                                VerticalOptions = LayoutOptions.CenterAndExpand,
+                                HorizontalOptions = LayoutOptions.StartAndExpand
                             }, 0, rowCount);
                             rowCount++;
                         }

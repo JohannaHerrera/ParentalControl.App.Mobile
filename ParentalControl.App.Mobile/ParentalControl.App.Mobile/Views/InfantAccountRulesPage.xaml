@@ -43,7 +43,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="110"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
                             </Grid.ColumnDefinitions>                            
                         </Grid>
                     </behaviors:Expander>
@@ -54,7 +54,7 @@
                         <Grid x:Name="tblUsoDispositivo" Padding="15" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="125"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
                             </Grid.ColumnDefinitions>                            
                         </Grid>
                     </behaviors:Expander>
