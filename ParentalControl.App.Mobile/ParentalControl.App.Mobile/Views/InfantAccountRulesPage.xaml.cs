@@ -520,8 +520,16 @@ namespace ParentalControl.App.Mobile.Views
                 }
                 else
                 {
-                    _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
-                    _ = Navigation.PushAsync(new InfantAccountPage());
+                    if(responseDeviceUse && responseWebConfiguration)
+                    {
+                        _ = DisplayAlert("Aviso", "La información se actualizó correctamente.", "OK");
+                        _ = Navigation.PushAsync(new InfantAccountPage());
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Error", "Ocurrió un error inesperado. Inténtelo de nuevo.", "OK");
+                        _ = Navigation.PushAsync(new InfantAccountPage());
+                    }
                 }
 
             }
